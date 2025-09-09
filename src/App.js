@@ -4,6 +4,14 @@ import Dashboard from './components/Dashboard';
 import Auth from './components/auth';
 import Employees from './components/Employees';
 import Task from './components/Task';
+import Leave from './components/Leave';
+import Payslips from './components/Payslips';
+import Trainings from './components/Trainings';
+import Cards from './components/Cards';
+import Announcements from './components/Announcements';
+import Help from './components/Help';
+import Profile from './components/Profile';
+import Settings from './components/Settings';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,6 +42,30 @@ function App() {
 
         case "task":
           return <Task setActivePage={setActivePage} activePage={activePage} />;
+
+        case "leave":
+          return <Leave setActivePage={setActivePage} activePage={activePage} />;
+
+        case "payslips":
+          return <Payslips setActivePage={setActivePage} activePage={activePage} />;
+
+        case "trainings":
+          return <Trainings setActivePage={setActivePage} activePage={activePage} />;
+
+        case "cards":
+          return <Cards setActivePage={setActivePage} activePage={activePage} />;
+
+        case "announcements":
+          return <Announcements setActivePage={setActivePage} activePage={activePage} />;
+
+        case "help":
+          return <Help setActivePage={setActivePage} activePage={activePage} />;
+
+        case "profile":
+          return <Profile setActivePage={setActivePage} activePage={activePage} />;
+
+        case "settings":
+          return <Settings setActivePage={setActivePage} activePage={activePage} />;
 
       default:
         return <Dashboard setActivePage={setActivePage} activePage={activePage} />;

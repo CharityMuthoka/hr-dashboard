@@ -1,7 +1,7 @@
 import {React, useState,useRef, useEffect} from 'react';
 
 
-export default function Task({ activePage, setActivePage }) {
+export default function Payslips({ activePage, setActivePage }) {
 
   
   const today = new Date();
