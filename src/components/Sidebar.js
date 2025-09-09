@@ -29,7 +29,7 @@ export default function Sidebar({ activePage, setActivePage }) {
         {/* Search Bar */}
         <div className="px-4 py-2">
   <div className="relative w-full">
-    {/* Search icon on the left */}
+    {/* Search image on the left */}
     <img
       src="/images/search.png"
       alt="Search"
@@ -43,7 +43,7 @@ export default function Sidebar({ activePage, setActivePage }) {
       className="w-full pl-9 pr-9 py-1.5 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00B8A9]"
     />
 
-    {/* Clear (X) icon on the right */}
+    {/* Clear image on the right */}
     <img
       src="/images/delete.png"
       alt="Clear"
