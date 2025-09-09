@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import AddEmployeeModal from "./AddEmployeeModal";
 import ActionsDropdown from './ActionsDropdown';
+import NewEmployeeModal from './NewEmployeeModal';
 
 
 

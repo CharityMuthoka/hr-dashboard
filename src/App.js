@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import Auth from './components/auth';
 import Employees from './components/Employees';
+import Task from './components/Task';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,6 +31,9 @@ function App() {
         
         case "employees":
         return <Employees setActivePage={setActivePage} activePage={activePage} />;
+
+        case "task":
+          return <Task setActivePage={setActivePage} activePage={activePage} />;
 
       default:
         return <Dashboard setActivePage={setActivePage} activePage={activePage} />;
