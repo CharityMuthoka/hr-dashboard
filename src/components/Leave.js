@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import LeaveChartDistribution from '../components/LeaveChartDistribution';
+
 
 export default function Task({ activePage, setActivePage }) {
   const dropdownRef = useRef(null);
@@ -180,7 +182,7 @@ export default function Task({ activePage, setActivePage }) {
             onClick={() => setShowNewEmployeeModal(true)}
             className="mt-4 lg:mt-0 bg-teal-500 text-white px-4 py-2 rounded-md text-sm hover:bg-teal-600 flex items-center gap-2"
           >
-            <img src="/images/download.png" alt="add employees" className="w-4 h-4" />
+            <img src="/images/new_download.png" alt="add employees" className="w-4 h-4" />
             Export Report
           </button>
         </div>
@@ -242,10 +244,10 @@ export default function Task({ activePage, setActivePage }) {
 
   {/* Leave Distribution */}
   <div className="bg-white rounded-lg border border-gray-100 shadow p-4">
-    <h2 className="text-md font-semibold text-gray-800 mb-4">Leave Type Distribution</h2>
-    <div className="flex items-center justify-center">
-      <img src="/images/leave_distribution.png" alt="training chart" className="w-full h-48 object-contain" />
-    </div>
+  <h2 className="text-md font-semibold text-gray-800 mb-4">Leave Type Distribution</h2>
+  <div className="h-64">
+    <LeaveChartDistribution leaveRequests={leaveRequests} />
+  </div>
     
 </div>
 </div>
