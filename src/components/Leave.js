@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import LeaveChartDistribution from '../components/LeaveChartDistribution';
-
+import AttendanceTrendsChart from '../components/AttendanceTrendsChart';
 
 export default function Task({ activePage, setActivePage }) {
   const dropdownRef = useRef(null);
@@ -88,6 +88,13 @@ export default function Task({ activePage, setActivePage }) {
         image: "/images/lisa.png",
       },
     ]);
+
+    const attendanceData = {
+      engineering: [75, 78, 76, 80, 85],
+      design: [60, 65, 62, 64, 66],
+      product: [50, 52, 55, 58, 60],
+    };
+    
   
     const [activeActionId, setActiveActionId] = React.useState(null);
 
@@ -238,9 +245,10 @@ export default function Task({ activePage, setActivePage }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
   {/* Attendance Trends */}
   <div className="bg-white rounded-lg border border-gray-100 shadow p-4">
-    <h2 className="text-md font-semibold text-gray-800 mb-4">Attendance Trends</h2>
-    <img src="/images/attendance_trends.png" alt="Bar chart" className="w-full h-48 object-contain" />
-  </div>
+  <h2 className="text-md font-semibold text-gray-800 mb-4">Attendance Trends</h2>
+  <AttendanceTrendsChart dataPoints={attendanceData} />
+</div>
+
 
   {/* Leave Distribution */}
   <div className="bg-white rounded-lg border border-gray-100 shadow p-4">
