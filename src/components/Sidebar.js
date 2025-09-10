@@ -67,9 +67,15 @@ export default function Sidebar({ activePage, setActivePage }) {
                     : 'text-gray-700 hover:bg-gray-100'
                 }`}
               >
-                <img src={item.icon} alt={`${item.name} icon`} className="w-4 h-4" />
-                <span className="text-sm">{item.name}</span>
-              </li>
+                <img
+               src={item.icon}
+               alt={`${item.name} icon`}
+               className={`w-4 h-4 transition ${
+                 activePage === item.key ? 'filter brightness-0 invert' : ''
+               }`}
+             />
+             <span className="text-sm">{item.name}</span>
+           </li>
             ))}
           </ul>
         </div>
