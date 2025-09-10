@@ -58,7 +58,6 @@ export default function Sidebar({ activePage, setActivePage }) {
           <p className="text-xs text-gray-400 uppercase mb-2 tracking-wide">Main Menu</p>
           <ul className="space-y-1.5">
             {menuItems.map((item) => (
-<<<<<<< HEAD
              <li
              key={item.key}
              onClick={() => setActivePage(item.key)}
@@ -69,18 +68,6 @@ export default function Sidebar({ activePage, setActivePage }) {
              }`}
            >
              <img
-=======
-              <li
-                key={item.key}
-                onClick={() => setActivePage(item.key)}
-                className={`flex items-center gap-2 px-2 py-1.5 rounded-md cursor-pointer transition ${
-                  activePage === item.key
-                    ? 'bg-[#00B8A9] text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                <img
->>>>>>> af2f89610673769a55b1a83dd95061a4554fb0a7
                src={item.icon}
                alt={`${item.name} icon`}
                className={`w-4 h-4 transition ${
@@ -89,10 +76,7 @@ export default function Sidebar({ activePage, setActivePage }) {
              />
              <span className="text-sm">{item.name}</span>
            </li>
-<<<<<<< HEAD
            
-=======
->>>>>>> af2f89610673769a55b1a83dd95061a4554fb0a7
             ))}
           </ul>
         </div>
