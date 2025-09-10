@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function AddEmployeeModal({ isOpen, onClose }) {
+export default function NewEmployeeModal({ isOpen, onClose }) {
   const [profileImageUrl, setProfileImageUrl] = useState(null);
   const [activeTab, setActiveTab] = useState("personal");
 
@@ -176,6 +176,36 @@ export default function AddEmployeeModal({ isOpen, onClose }) {
               </select>
             </div>
 
+            {/*Employment Status */}
+            <div>
+              <label className="block mb-1 font-medium">Employment Status</label>
+              <select
+              className="w-full border border-gray-300 rounded-md px-3 py-1.5 bg-[#f3f3f5] text-black"
+              defaultValue=""
+              >
+                <option value="" disabled hidden>
+                  Select Status
+                </option>
+                <option>Probation</option>
+
+              </select>
+            </div>
+
+            {/*Education Qualification */}
+            <div>
+              <label className="block mb-1 font-medium">Educational Qualification</label>
+              <select
+              className="w-full border border-gray-300 rounded-md px-3 py-1.5 bg-[#f3f3f5] text-black"
+              defaultValue=""
+              >
+                <option value="" disabled hidden>
+                  Select
+                </option>
+                <option>Degree</option>
+                <option>Masters</option>
+              </select>
+            </div>
+
             {/* Start Date */}
             <div>
               <label className="block mb-1 font-medium">Start Date</label>
@@ -187,7 +217,7 @@ export default function AddEmployeeModal({ isOpen, onClose }) {
 
             {/* Salary */}
             <div>
-              <label className="block mb-1 font-medium">Salary</label>
+              <label className="block mb-1 font-medium">Contract Duration</label>
               <input
                 type="number"
                 placeholder="$"
