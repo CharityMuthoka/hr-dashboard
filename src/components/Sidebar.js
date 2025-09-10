@@ -58,18 +58,25 @@ export default function Sidebar({ activePage, setActivePage }) {
           <p className="text-xs text-gray-400 uppercase mb-2 tracking-wide">Main Menu</p>
           <ul className="space-y-1.5">
             {menuItems.map((item) => (
-              <li
-                key={item.key}
-                onClick={() => setActivePage(item.key)}
-                className={`flex items-center gap-2 px-2 py-1.5 rounded-md cursor-pointer transition ${
-                  activePage === item.key
-                    ? 'bg-[#00B8A9] text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                <img src={item.icon} alt={`${item.name} icon`} className="w-4 h-4" />
-                <span className="text-sm">{item.name}</span>
-              </li>
+             <li
+             key={item.key}
+             onClick={() => setActivePage(item.key)}
+             className={`flex items-center gap-2 px-2 py-1.5 rounded-md cursor-pointer transition ${
+               activePage === item.key
+                 ? 'bg-[#00B8A9] text-white'
+                 : 'text-gray-700 hover:bg-gray-100'
+             }`}
+           >
+             <img
+               src={item.icon}
+               alt={`${item.name} icon`}
+               className={`w-4 h-4 transition ${
+                 activePage === item.key ? 'filter brightness-0 invert' : ''
+               }`}
+             />
+             <span className="text-sm">{item.name}</span>
+           </li>
+           
             ))}
           </ul>
         </div>

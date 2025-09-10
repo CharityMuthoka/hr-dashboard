@@ -5,65 +5,96 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
-  Legend,
   Tooltip,
+  Legend,
 } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Legend, Tooltip);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const LeaveDistributionChart = ({ leaveRequests }) => {
-  const leaveTypes = ['Annual Leave', 'Sick Leave', 'Personal Leave', 'Maternity Leave', 'Emergency Leave'];
+const LeaveDistributionChart = () => {
+  const leaveTypes = ['Annual', 'Sick', 'Personal', 'Maternity', 'Emergency'];
 
-  const typeStatusCount = leaveTypes.reduce((acc, type) => {
-    acc[type] = { Approved: 0, Pending: 0, Rejected: 0 };
-    return acc;
-  }, {});
-
-  leaveRequests.forEach(({ type, status }) => {
-    if (!typeStatusCount[type]) {
-      typeStatusCount[type] = { Approved: 0, Pending: 0, Rejected: 0 };
-    }
-    if (typeStatusCount[type][status] !== undefined) {
-      typeStatusCount[type][status]++;
-    }
-  });
-
-  const labels = Object.keys(typeStatusCount);
-  const approvedData = labels.map(type => typeStatusCount[type].Approved);
-  const pendingData = labels.map(type => typeStatusCount[type].Pending);
-  const rejectedData = labels.map(type => typeStatusCount[type].Rejected);
+  const greenValues = [80, 75, 60, 70, 80];
+  const orangeValues = [40, 35, 30, 40, 20];
 
   const data = {
-    labels,
+    labels: leaveTypes,
     datasets: [
       {
-        label: 'Approved',
-        data: approvedData,
-        backgroundColor: '#34d399', 
+        label: 'Used',
+        data: greenValues,
+        backgroundColor: '#00B8A9',
+        borderRadius: 6,
       },
       {
-        label: 'Pending',
-        data: pendingData,
-        backgroundColor: '#fbbf24', 
-      },
-      {
-        label: 'Rejected',
-        data: rejectedData,
-        backgroundColor: '#f87171', 
+        label: 'Remaining',
+        data: orangeValues,
+        backgroundColor: '#FFA726',
+        borderRadius: 6,
       },
     ],
   };
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
+        display: true,
         position: 'top',
+        labels: {
+          font: {
+            size: 12,
+            weight: 'bold',
+          },
+          usePointStyle: true,
+        },
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        stacked: false,
+        categoryPercentage: 0.5, 
+        barPercentage: 0.4,      
+        ticks: {
+          font: {
+            size: 12,
+            weight: '500',
+          },
+          maxRotation: 0,
+          minRotation: 0,
+          padding: 10,
+        },
+      },
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          stepSize: 20,
+          font: {
+            size: 12,
+          },
+        },
+        grid: {
+          drawBorder: false,
+          color: '#f3f3f3',
+        },
       },
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <div style={{ height: '300px' }}>
+      <Bar data={data} options={options} />
+    </div>
+  );
 };
 
 export default LeaveDistributionChart;
+
