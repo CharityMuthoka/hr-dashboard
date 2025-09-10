@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import AddEmployeeModal from "./AddEmployeeModal";
 import ActionsDropdown from './ActionsDropdown';
+import TaskCompletionChart from '../components/TaskCompletionChart';
+import TrainingProgressChart from '../components/TrainingProgressChart';
+
 
 
 
@@ -34,6 +37,25 @@ export default function Dashboard() {
     day: "numeric",
     year: "numeric",
   });
+
+  const taskCompletionData = [
+    { department: 'Engineering', completion: 85 },
+    { department: 'Design', completion: 35 },
+    { department: 'Product', completion: 65 },
+    { department: 'Marketing', completion: 25 },
+    { department: 'Sales', completion: 75 },
+    { department: 'HR', completion: 90 },
+  ];
+
+  const trainingData = [
+    { label: 'Completed', value: 68, color: '#14b8a6' },      
+    { label: 'In Progress', value: 25, color: '#22d3ee' },    
+    { label: 'Not Started', value: 7, color: '#d1d5db' },     
+  ];
+  
+  const handleTrainingSegmentClick = (segment) => {
+    alert(`Clicked: ${segment.label} - ${segment.value}%`);
+  };
 
  
 
@@ -321,16 +343,30 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
   {/* Task Completion */}
+  {/*}
   <div className="bg-white rounded-lg border border-gray-100 shadow p-4">
     <h2 className="text-md font-semibold text-gray-800 mb-4">Task Completion by Department</h2>
     <img src="/images/bar_graph.png" alt="Bar chart" className="w-full h-48 object-contain" />
   </div>
+  */}
+
+  <div className="bg-white rounded-lg border border-gray-100 shadow p-4">
+  <h2 className="text-md font-semibold text-gray-800 mb-4">Task Completion by Department</h2>
+  <TaskCompletionChart data={taskCompletionData} />
+</div>
 
   {/* Training Progress */}
   <div className="bg-white rounded-lg border border-gray-100 shadow p-4">
     <h2 className="text-md font-semibold text-gray-800 mb-4">Training Progress</h2>
     <div className="flex items-center justify-center">
+      {/*}
       <img src="/images/training_progress22.png" alt="training chart" className="w-32 h-32 object-contain" />
+      */}
+      <TrainingProgressChart
+  data={trainingData}
+  onSegmentClick={handleTrainingSegmentClick}
+/>
+
     </div>
     <ul className="mt-4 text-sm text-gray-700 space-y-1">
       <li className="flex justify-between">
