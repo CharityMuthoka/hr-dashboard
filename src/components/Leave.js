@@ -200,7 +200,7 @@ export default function Task({ activePage, setActivePage }) {
             <div className="flex items-center justify-between">
               <p className="text-base font-bold text-gray-600">Pending Requests </p>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-blue-500">
-                <img src="/images/total_employees.png" alt="Users" className="w-5 h-5" />
+                <img src="/images/pending_risk.png" alt="Users" className="w-5 h-5" />
               </div>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mt-2">{employees.length}</h3>
@@ -210,8 +210,8 @@ export default function Task({ activePage, setActivePage }) {
        <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-bold text-gray-600">Approved This Month</p>
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#e2fbe8" }}>
-                  <img src="/images/active_dot.png" alt="Users" className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#5ac96a" }}>
+                  <img src="/images/approved.png" alt="Users" className="w-5 h-5" />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mt-2">3</h3>
@@ -221,8 +221,8 @@ export default function Task({ activePage, setActivePage }) {
              <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-bold text-gray-600">Total Days Requested</p>
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#fcedd7" }}>
-                  <img src="/images/onleave_dot.png" alt="Users" className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#6065f8" }}>
+                  <img src="/images/total_days.png" alt="Users" className="w-5 h-5" />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mt-2">36</h3>
@@ -232,8 +232,8 @@ export default function Task({ activePage, setActivePage }) {
             <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
               <div className="flex items-center justify-between">
                 <p className="text-base font-bold text-gray-600">Avg. Attendance</p>
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#2ca5ff" }}>
-                  <img src="/images/departments_dot.png" alt="Users" className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#f27213" }}>
+                  <img src="/images/average_attendance.png" alt="Users" className="w-4 h-4" />
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mt-2">92%</h3>
