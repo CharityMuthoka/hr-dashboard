@@ -257,7 +257,15 @@ const Task = ({ setActivePage, activePage }) => {
     className="w-2.5 h-2.5 rounded-full"
     style={{ backgroundColor: "#3A86FF" }}
   ></span>
-  <h3 className="text-sm font-semibold text-neutral-700">To Do</h3>
+<h3 className="text-sm font-semibold text-neutral-700 flex items-center">
+  To Do
+  <span className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold  rounded-sm px-1.5 py-0.5"
+  style={{backgroundColor:'#ffffff', color:'#000000'}}
+  >
+    {tasks.todo.length}
+  </span>
+</h3>
+
 </div>
 
 
@@ -269,7 +277,16 @@ const Task = ({ setActivePage, activePage }) => {
       className="w-2.5 h-2.5 rounded-full"
       style={{ backgroundColor: '#e7b213' }}
     ></span>
-    <h3 className="text-sm font-semibold text-neutral-700">In Progress</h3>
+
+<h3 className="text-sm font-semibold text-neutral-700 flex items-center">
+  In Progress
+  <span
+    className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold rounded-sm px-1.5 py-0.5"
+    style={{ backgroundColor: '#ffffff', color: '#000000' }}
+  >
+    {tasks.inProgress.length}
+  </span>
+</h3>
   </div>
   
   {tasks.inProgress.map(renderTaskCard)}
@@ -281,7 +298,15 @@ const Task = ({ setActivePage, activePage }) => {
       className="w-2.5 h-2.5 rounded-full"
       style={{ backgroundColor: '#4fc560' }} 
     ></span>
-    <h3 className="text-sm font-semibold text-neutral-700">Completed</h3>
+<h3 className="text-sm font-semibold text-neutral-700 flex items-center">
+  Completed
+  <span
+    className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold rounded-sm px-1.5 py-0.5"
+    style={{ backgroundColor: '#ffffff', color: '#000000' }}
+  >
+    {tasks.completed.length}
+  </span>
+</h3>
   </div>
 
   {tasks.completed.map(renderTaskCard)}
