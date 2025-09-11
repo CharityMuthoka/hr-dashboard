@@ -521,7 +521,7 @@ export default function Task({ activePage, setActivePage }) {
               ))}
             </td>
             <td className="text-sm text-gray-800">{emp.clockIn}</td>
-            <td className="text-xl text-gray-600">{emp.clockOut}</td>
+            <td className="text-l text-gray-600">{emp.clockOut}</td>
             <td>
               {emp.status === "Checked" ? (
                 <span
