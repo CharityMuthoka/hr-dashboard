@@ -37,6 +37,8 @@ export default function Dashboard() {
     day: "numeric",
     year: "numeric",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const taskCompletionData = [
     { department: 'Engineering', completion: 85 },
@@ -292,15 +294,59 @@ export default function Dashboard() {
             </div>
 
             <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-              <p>Showing 4 to 25</p>
-              <div className="flex gap-2">
-                <button className="px-2 py-1 border rounded-md hover:bg-gray-100">Previous</button>
-                <button className="px-2 py-1 bg-teal-500 text-white rounded-md">1</button>
-                <button className="px-2 py-1 border rounded-md hover:bg-gray-100">2</button>
-                <button className="px-2 py-1 border rounded-md hover:bg-gray-100">3</button>
-                <button className="px-2 py-1 border rounded-md hover:bg-gray-100">Next</button>
-              </div>
-            </div>
+  
+  <p>
+  Showing {(currentPage - 1) * itemsPerPage + 1} to {employees.length} entries
+</p>
+
+<div className="flex gap-2">
+  {/* Previous Button */}
+  <button
+    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+    disabled={currentPage === 1}
+    className={`px-2 py-1 border rounded-md hover:bg-gray-100 ${
+      currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+    }`}
+  >
+    Previous
+  </button>
+
+  {/* Page Numbers */}
+  {Array.from({ length: Math.ceil(employees.length / itemsPerPage) }, (_, index) => {
+    const pageNum = index + 1;
+    return (
+      <button
+        key={pageNum}
+        onClick={() => setCurrentPage(pageNum)}
+        className={`px-2 py-1 rounded-md ${
+          currentPage === pageNum
+            ? "bg-teal-500 text-white"
+            : "border hover:bg-gray-100"
+        }`}
+      >
+        {pageNum}
+      </button>
+    );
+  })}
+
+  {/* Next Button */}
+  <button
+    onClick={() =>
+      setCurrentPage((prev) =>
+        prev < Math.ceil(employees.length / itemsPerPage) ? prev + 1 : prev
+      )
+    }
+    disabled={currentPage >= Math.ceil(employees.length / itemsPerPage)}
+    className={`px-2 py-1 border rounded-md hover:bg-gray-100 ${
+      currentPage >= Math.ceil(employees.length / itemsPerPage)
+        ? "opacity-50 cursor-not-allowed"
+        : ""
+    }`}
+  >
+    Next
+  </button>
+</div>
+</div>
           </div>
 
           {/* Leave Requests */}

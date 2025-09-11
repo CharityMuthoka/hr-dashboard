@@ -13,6 +13,9 @@ export default function Employees({ activePage, setActivePage }) {
     year: "numeric",
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+const itemsPerPage = 4;
+
   const [employees, setEmployees] = useState([
     {
       name: "Sarah Johnson",
@@ -41,6 +44,13 @@ export default function Employees({ activePage, setActivePage }) {
       role: "Senior Developer",
       department: "Engineering",
       image: "/images/lisa.png",
+    },
+    {
+      name: "Michael Chen",
+      email: "michael.c@company.com",
+      role: "Marketing Lead",
+      department: "Engineering",
+      image: "/images/michael.png",
     },
   ]);
 
@@ -216,7 +226,9 @@ export default function Employees({ activePage, setActivePage }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {employees.map((emp, index) => (
+                  {employees
+                .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                .map((emp, index) => (
                       <tr key={index} className="border-b">
                         <td className="flex items-center gap-3 py-3">
                           <img src={emp.image} alt={emp.name} className="w-10 h-10 rounded-full object-cover" />
@@ -240,13 +252,61 @@ export default function Employees({ activePage, setActivePage }) {
               </div>
 
               <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-                <p>Showing {employees.length} entries</p>
-                <div className="flex gap-2">
-                  <button className="px-2 py-1 border rounded-md hover:bg-gray-100">Previous</button>
-                  <button className="px-2 py-1 bg-teal-500 text-white rounded-md">1</button>
-                  <button className="px-2 py-1 border rounded-md hover:bg-gray-100">Next</button>
-                </div>
-              </div>
+  
+  <p>
+  Showing {(currentPage - 1) * itemsPerPage + 1} to {employees.length} entries
+</p>
+
+<div className="flex gap-2">
+  {/* Previous Button */}
+  <button
+    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+    disabled={currentPage === 1}
+    className={`px-2 py-1 border rounded-md hover:bg-gray-100 ${
+      currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+    }`}
+  >
+    Previous
+  </button>
+
+  {/* Page Numbers */}
+  {Array.from({ length: Math.ceil(employees.length / itemsPerPage) }, (_, index) => {
+    const pageNum = index + 1;
+    return (
+      <button
+        key={pageNum}
+        onClick={() => setCurrentPage(pageNum)}
+        className={`px-2 py-1 rounded-md ${
+          currentPage === pageNum
+            ? "bg-teal-500 text-white"
+            : "border hover:bg-gray-100"
+        }`}
+      >
+        {pageNum}
+      </button>
+    );
+  })}
+
+  {/* Next Button */}
+  <button
+    onClick={() =>
+      setCurrentPage((prev) =>
+        prev < Math.ceil(employees.length / itemsPerPage) ? prev + 1 : prev
+      )
+    }
+    disabled={currentPage >= Math.ceil(employees.length / itemsPerPage)}
+    className={`px-2 py-1 border rounded-md hover:bg-gray-100 ${
+      currentPage >= Math.ceil(employees.length / itemsPerPage)
+        ? "opacity-50 cursor-not-allowed"
+        : ""
+    }`}
+  >
+    Next
+  </button>
+</div>
+</div>
+
+
             </div>
           </div>
         </div>

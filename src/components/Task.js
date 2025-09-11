@@ -159,7 +159,7 @@ const Task = ({ setActivePage, activePage }) => {
       <div className="pt-2 border-t border-neurtal-200">
         {/* assignee section */}
         <div className="flex items-center gap-1">
-          <img width="12" height="13" src="/images/assignee.png" alt="Assignee" />
+          <img width="12" height="13" src="/images/assignee_2.png" alt="Assignee" />
           <div className="text-[10px] text-gray-600 font-medium">
             Assigned by {task.assignee}
           </div>
