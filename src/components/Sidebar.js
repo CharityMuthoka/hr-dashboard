@@ -2,7 +2,7 @@ import React from 'react';
 
 const menuItems = [
   { name: 'Dashboard', key: 'dashboard', icon: '/images/dashboard_2.png' },
-  {name: 'Employees', key: 'employees', icon: '/images/task.png'},
+  {name: 'Employees', key: 'employees', icon: '/images/Frame.png'},
   { name: 'Task', key: 'task', icon: '/images/task.png' },
   { name: 'Leave & Attendance', key: 'leave', icon: '/images/leave.png' },
   { name: 'Pay Slips', key: 'payslips', icon: '/images/payslips.png' },

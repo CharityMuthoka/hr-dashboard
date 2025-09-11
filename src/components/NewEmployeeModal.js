@@ -186,7 +186,12 @@ export default function NewEmployeeModal({ isOpen, onClose }) {
                 <option value="" disabled hidden>
                   Select Status
                 </option>
-                <option>Probation</option>
+                <option>Permanent</option>
+                <option>Contract</option>
+                <option>Temporary</option>
+                <option>Probationary</option>
+                <option>Internship</option>
+                <option>Freelance</option>
 
               </select>
             </div>
@@ -224,6 +229,7 @@ export default function NewEmployeeModal({ isOpen, onClose }) {
                 className="w-full border border-gray-300 rounded-md px-3 py-1.5 bg-[#f3f3f5] text-black placeholder-gray-500"
               />
             </div>
+            <div className="h-10" /> 
           </form>
         )}
 
