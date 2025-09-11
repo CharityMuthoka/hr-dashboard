@@ -90,6 +90,20 @@ export default function Dashboard() {
       department: "Engineering",
       image: "/images/lisa.png",
     },
+    {
+      name: "Michael Chen",
+      email: "michael.c@company.com",
+      role: "Marketing Lead",
+      department: "Engineering",
+      image: "/images/michael.png",
+    },
+    {
+      name: "David Wilson",
+      email: "david.w@company.com",
+      role: "Product Manager",
+      department: "Product",
+      image: "/images/david.png",
+    },
   ];
 
   const leaveRequests = [
@@ -270,7 +284,9 @@ export default function Dashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {employees.map((emp, index) => (
+                {employees
+                .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+                .map((emp, index) => (
                     <tr key={index} className="border-b">
                       <td className="flex items-center gap-3 py-3">
                         <img src={emp.image} alt={emp.name} className="w-10 h-10 rounded-full object-cover" />
