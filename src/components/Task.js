@@ -252,17 +252,41 @@ const Task = ({ setActivePage, activePage }) => {
           
           
           <div>
-            <h3 className="text-sm font-semibold text-neutral-700 mb-2">To Do</h3>
+          <div className="flex items-center gap-2 mb-2">
+  <span
+    className="w-2.5 h-2.5 rounded-full"
+    style={{ backgroundColor: "#3A86FF" }}
+  ></span>
+  <h3 className="text-sm font-semibold text-neutral-700">To Do</h3>
+</div>
+
+
             {tasks.todo.map(renderTaskCard)}
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-neutral-700 mb-2">In Progress</h3>
-            {tasks.inProgress.map(renderTaskCard)}
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold text-neutral-700 mb-2">Completed</h3>
-            {tasks.completed.map(renderTaskCard)}
-          </div>
+  <div className="flex items-center gap-2 mb-2">
+    <span 
+      className="w-2.5 h-2.5 rounded-full"
+      style={{ backgroundColor: '#e7b213' }}
+    ></span>
+    <h3 className="text-sm font-semibold text-neutral-700">In Progress</h3>
+  </div>
+  
+  {tasks.inProgress.map(renderTaskCard)}
+</div>
+
+<div>
+  <div className="flex items-center gap-2 mb-2">
+    <span 
+      className="w-2.5 h-2.5 rounded-full"
+      style={{ backgroundColor: '#4fc560' }} 
+    ></span>
+    <h3 className="text-sm font-semibold text-neutral-700">Completed</h3>
+  </div>
+
+  {tasks.completed.map(renderTaskCard)}
+</div>
+
         </div>
       </div>
 
