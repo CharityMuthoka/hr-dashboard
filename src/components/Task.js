@@ -18,6 +18,10 @@ const Task = ({ setActivePage, activePage }) => {
     setIsDropdownOpen((prev) => !prev);
   };
 
+  const [selectedFilter, setSelectedFilter] = useState('All');
+const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
+
+
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", {
     month: "long",
@@ -240,77 +244,106 @@ const Task = ({ setActivePage, activePage }) => {
               onChange={(e) => console.log(e.target.value)}
             />
           </div>
-          <div className="flex items-center gap-2 p-2 border border-gray-200 rounded-md bg-white cursor-pointer hover:bg-gray-50">
-            <img src="/images/filter.png" className="w-4 h-4" alt="Filter" />
-            <span className="text-sm font-medium text-gray-700">All Task</span>
-            <img src="/images/dropdown.png" className="w-2.5 h-2.5" alt="Dropdown" />
-          </div>
+         <div className="relative">
+  <div
+    className="flex items-center gap-2 p-2 border border-gray-200 rounded-md bg-white cursor-pointer hover:bg-gray-50"
+    onClick={() => setIsFilterDropdownOpen(prev => !prev)}
+  >
+    <img src="/images/filter.png" className="w-4 h-4" alt="Filter" />
+    <span className="text-sm font-medium text-gray-700">{selectedFilter} Tasks</span>
+    <img src="/images/dropdown.png" className="w-2.5 h-2.5" alt="Dropdown" />
+  </div>
+
+  {/* Filter Options Dropdown */}
+  {isFilterDropdownOpen && (
+    <div className="absolute right-0 mt-1 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+      {['All', 'To Do', 'In Progress', 'Completed'].map((filter) => (
+        <div
+          key={filter}
+          className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-700"
+          onClick={() => {
+            setSelectedFilter(filter);
+            setIsFilterDropdownOpen(false);
+          }}
+        >
+          {filter}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
         </div>
 
         {/* Task Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          
-          <div>
-          <div className="flex items-center gap-2 mb-2">
-  <span
-    className="w-2.5 h-2.5 rounded-full"
-    style={{ backgroundColor: "#3A86FF" }}
-  ></span>
-<h3 className="text-sm font-semibold text-neutral-700 flex items-center">
-  To Do
-  <span className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold  rounded-sm px-1.5 py-0.5"
-  style={{backgroundColor:'#ffffff', color:'#000000'}}
-  >
-    {tasks.todo.length}
-  </span>
-</h3>
+  {(selectedFilter === 'All' || selectedFilter === 'To Do') && (
+    <div>
+      <div className="flex items-center gap-2 mb-2">
+        <span
+          className="w-2.5 h-2.5 rounded-full"
+          style={{ backgroundColor: "#3A86FF" }}
+        ></span>
+        <h3 className="text-sm font-semibold text-neutral-700 flex items-center">
+          To Do
+          <span
+            className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold rounded-sm px-1.5 py-0.5"
+            style={{ backgroundColor: '#ffffff', color: '#000000' }}
+          >
+            {tasks.todo.length}
+          </span>
+        </h3>
+      </div>
 
-</div>
+      {tasks.todo.map(renderTaskCard)}
+    </div>
+  )}
+
+  {(selectedFilter === 'All' || selectedFilter === 'In Progress') && (
+    <div>
+      <div className="flex items-center gap-2 mb-2">
+        <span
+          className="w-2.5 h-2.5 rounded-full"
+          style={{ backgroundColor: "#e7b213" }}
+        ></span>
+        <h3 className="text-sm font-semibold text-neutral-700 flex items-center">
+          In Progress
+          <span
+            className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold rounded-sm px-1.5 py-0.5"
+            style={{ backgroundColor: '#ffffff', color: '#000000' }}
+          >
+            {tasks.inProgress.length}
+          </span>
+        </h3>
+      </div>
+
+      {tasks.inProgress.map(renderTaskCard)}
+    </div>
+  )}
+
+  {(selectedFilter === 'All' || selectedFilter === 'Completed') && (
+    <div>
+      <div className="flex items-center gap-2 mb-2">
+        <span
+          className="w-2.5 h-2.5 rounded-full"
+          style={{ backgroundColor: '#4fc560' }}
+        ></span>
+        <h3 className="text-sm font-semibold text-neutral-700 flex items-center">
+          Completed
+          <span
+            className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold rounded-sm px-1.5 py-0.5"
+            style={{ backgroundColor: '#ffffff', color: '#000000' }}
+          >
+            {tasks.completed.length}
+          </span>
+        </h3>
+      </div>
+
+      {tasks.completed.map(renderTaskCard)}
+    </div>
+  )}
 
 
-            {tasks.todo.map(renderTaskCard)}
-          </div>
-          <div>
-  <div className="flex items-center gap-2 mb-2">
-    <span 
-      className="w-2.5 h-2.5 rounded-full"
-      style={{ backgroundColor: '#e7b213' }}
-    ></span>
-
-<h3 className="text-sm font-semibold text-neutral-700 flex items-center">
-  In Progress
-  <span
-    className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold rounded-sm px-1.5 py-0.5"
-    style={{ backgroundColor: '#ffffff', color: '#000000' }}
-  >
-    {tasks.inProgress.length}
-  </span>
-</h3>
-  </div>
-  
-  {tasks.inProgress.map(renderTaskCard)}
-</div>
-
-<div>
-  <div className="flex items-center gap-2 mb-2">
-    <span 
-      className="w-2.5 h-2.5 rounded-full"
-      style={{ backgroundColor: '#4fc560' }} 
-    ></span>
-<h3 className="text-sm font-semibold text-neutral-700 flex items-center">
-  Completed
-  <span
-    className="ml-2 inline-block min-w-[20px] text-center text-xs font-semibold rounded-sm px-1.5 py-0.5"
-    style={{ backgroundColor: '#ffffff', color: '#000000' }}
-  >
-    {tasks.completed.length}
-  </span>
-</h3>
-  </div>
-
-  {tasks.completed.map(renderTaskCard)}
-</div>
 
         </div>
       </div>
