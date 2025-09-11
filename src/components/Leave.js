@@ -55,7 +55,20 @@ export default function Task({ activePage, setActivePage }) {
       days: 5,
       status: "Rejected",
       applied: "2025-12-01"
-    }
+    },
+
+    {
+      id: 5,
+      name: "Victor Josh",
+      department: "Design",
+      image: "/images/michael.png",
+      type: "Personal Leave",
+      from: "2025-12-20",
+      to: "2025-12-24",
+      days: 5,
+      status: "Approved",
+      applied: "2025-12-01"
+    },
   ]);
 
   const [employees, setEmployees] = useState([
@@ -86,6 +99,14 @@ export default function Task({ activePage, setActivePage }) {
         role: "Senior Developer",
         department: "Engineering",
         image: "/images/lisa.png",
+      },
+
+      {
+        name: "Michael Chen",
+        email: "michael.c@company.com",
+        role: "Marketing Lead",
+        department: "Engineering",
+        image: "/images/michael.png",
       },
     ]);
 
@@ -118,6 +139,9 @@ export default function Task({ activePage, setActivePage }) {
     day: "numeric",
     year: "numeric",
   });
+
+   const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -311,7 +335,11 @@ export default function Task({ activePage, setActivePage }) {
           </tr>
         </thead>
         <tbody>
-        {leaveRequests.map((request) => (
+          
+        {leaveRequests
+  .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+  .map((request) => (
+
   <tr key={request.id} className="border-b">
     <td className="flex items-center gap-3 py-3">
       <img
@@ -405,13 +433,61 @@ export default function Task({ activePage, setActivePage }) {
     </div>
 
     <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-      <p>Showing {leaveRequests.length} entries</p>
-      <div className="flex gap-2">
-        <button className="px-2 py-1 border rounded-md hover:bg-gray-100">Previous</button>
-        <button className="px-2 py-1 bg-teal-500 text-white rounded-md">1</button>
-        <button className="px-2 py-1 border rounded-md hover:bg-gray-100">Next</button>
-      </div>
-    </div>
+  
+  <p>
+  Showing {(currentPage - 1) * itemsPerPage + 1} to {employees.length} entries
+</p>
+
+<div className="flex gap-2">
+  {/* Previous Button */}
+  <button
+    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+    disabled={currentPage === 1}
+    className={`px-2 py-1 border rounded-md hover:bg-gray-100 ${
+      currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+    }`}
+  >
+    Previous
+  </button>
+
+  {/* Page Numbers */}
+  {Array.from({ length: Math.ceil(employees.length / itemsPerPage) }, (_, index) => {
+    const pageNum = index + 1;
+    return (
+      <button
+        key={pageNum}
+        onClick={() => setCurrentPage(pageNum)}
+        className={`px-2 py-1 rounded-md ${
+          currentPage === pageNum
+            ? "bg-teal-500 text-white"
+            : "border hover:bg-gray-100"
+        }`}
+      >
+        {pageNum}
+      </button>
+    );
+  })}
+
+  {/* Next Button */}
+  <button
+    onClick={() =>
+      setCurrentPage((prev) =>
+        prev < Math.ceil(employees.length / itemsPerPage) ? prev + 1 : prev
+      )
+    }
+    disabled={currentPage >= Math.ceil(employees.length / itemsPerPage)}
+    className={`px-2 py-1 border rounded-md hover:bg-gray-100 ${
+      currentPage >= Math.ceil(employees.length / itemsPerPage)
+        ? "opacity-50 cursor-not-allowed"
+        : ""
+    }`}
+  >
+    Next
+  </button>
+</div>
+</div>
+
+
   </div>
 </div>
 
