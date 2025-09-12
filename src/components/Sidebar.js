@@ -5,7 +5,7 @@ const menuItems = [
   {name: 'Employees', key: 'employees', icon: '/images/Frame.png'},
   { name: 'Task', key: 'task', icon: '/images/task.png' },
   { name: 'Leave & Attendance', key: 'leave', icon: '/images/leave.png' },
-  { name: 'Pay Slips', key: 'payslips', icon: '/images/payslips.png' },
+  { name: 'Pay Roll', key: 'payroll', icon: '/images/payslips.png' },
   { name: 'Trainings', key: 'trainings', icon: '/images/trainings.png' },
   { name: 'Digital Cards', key: 'cards', icon: '/images/digital_cards.png' },
   { name: 'Announcements', key: 'announcements', icon: '/images/announcements.png' },

@@ -196,7 +196,7 @@ export default function Dashboard() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
           {/* Card 1 */}
-          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
+          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex items-center justify-between">
               <p className="text-base font-bold text-gray-600">Total Employees</p>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#0D99FF" }}>
@@ -211,7 +211,7 @@ export default function Dashboard() {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
+          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex items-center justify-between">
               <p className="text-sm font-bold text-gray-600 ">New Hires This Month</p>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#5ac96a" }}>
@@ -226,7 +226,7 @@ export default function Dashboard() {
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
+          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex items-center justify-between">
               <p className="text-sm font-bold text-gray-600 ">Pending Leave Requests</p>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#f27213" }}>
@@ -241,7 +241,7 @@ export default function Dashboard() {
           </div>
 
           {/* Card 4 */}
-          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
+          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
             <div className="flex items-center justify-between">
               <p className="text-base font-bold text-gray-600">Payroll Summary</p>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#238bfd" }}>

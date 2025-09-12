@@ -5,7 +5,7 @@ import Auth from './components/auth';
 import Employees from './components/Employees';
 import Task from './components/Task';
 import Leave from './components/Leave';
-import Payslips from './components/Payslips';
+import Payroll from './components/Payroll';
 import Trainings from './components/Trainings';
 import Cards from './components/Cards';
 import Announcements from './components/Announcements';
@@ -46,8 +46,8 @@ function App() {
         case "leave":
           return <Leave setActivePage={setActivePage} activePage={activePage} />;
 
-        case "payslips":
-          return <Payslips setActivePage={setActivePage} activePage={activePage} />;
+        case "payroll":
+          return <Payroll setActivePage={setActivePage} activePage={activePage} />;
 
         case "trainings":
           return <Trainings setActivePage={setActivePage} activePage={activePage} />;

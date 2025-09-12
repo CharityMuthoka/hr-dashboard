@@ -134,8 +134,8 @@ const itemsPerPage = 4;
           {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
             {/* Total Employees */}
-            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
-              <div className="flex items-center justify-between">
+            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+            <div className="flex items-center justify-between">
                 <p className="text-base font-bold text-gray-600">Total Employees</p>
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#0D99FF" }}>
                   <img src="/images/total_employees.png" alt="Users" className="w-5 h-5" />
@@ -145,8 +145,8 @@ const itemsPerPage = 4;
             </div>
 
             {/* Active */}
-            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
-              <div className="flex items-center justify-between">
+            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+            <div className="flex items-center justify-between">
                 <p className="text-sm font-bold text-gray-600">Active</p>
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#e2fbe8" }}>
                   <img src="/images/active_dot.png" alt="Users" className="w-5 h-5" />
@@ -156,8 +156,8 @@ const itemsPerPage = 4;
             </div>
 
             {/* On Leave */}
-            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
-              <div className="flex items-center justify-between">
+            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+            <div className="flex items-center justify-between">
                 <p className="text-sm font-bold text-gray-600">OnLeave</p>
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#fcedd7" }}>
                   <img src="/images/onleave_dot.png" alt="Users" className="w-5 h-5" />
@@ -167,8 +167,8 @@ const itemsPerPage = 4;
             </div>
 
             {/* Departments */}
-            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
-              <div className="flex items-center justify-between">
+            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+            <div className="flex items-center justify-between">
                 <p className="text-base font-bold text-gray-600">Departments</p>
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#2ca5ff" }}>
                   <img src="/images/departments_dot.png" alt="Users" className="w-5 h-5" />

@@ -220,8 +220,8 @@ export default function Task({ activePage, setActivePage }) {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
-          <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md transition">
-            <div className="flex items-center justify-between">
+        <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+        <div className="flex items-center justify-between">
               <p className="text-base font-bold text-gray-600">Pending Requests </p>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-blue-500">
                 <img src="/images/pending_risk.png" alt="Users" className="w-5 h-5" />
@@ -231,8 +231,8 @@ export default function Task({ activePage, setActivePage }) {
           </div>
 
            {/* Approved */}
-       <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
-              <div className="flex items-center justify-between">
+           <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+           <div className="flex items-center justify-between">
                 <p className="text-sm font-bold text-gray-600">Approved This Month</p>
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#5ac96a" }}>
                   <img src="/images/approved.png" alt="Users" className="w-5 h-5" />
@@ -242,8 +242,8 @@ export default function Task({ activePage, setActivePage }) {
             </div> 
 
              {/* Total Days Requested */}
-             <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
-              <div className="flex items-center justify-between">
+             <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+             <div className="flex items-center justify-between">
                 <p className="text-sm font-bold text-gray-600">Total Days Requested</p>
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#6065f8" }}>
                   <img src="/images/Total_days.png" alt="Users" className="w-5 h-5" />
@@ -253,8 +253,8 @@ export default function Task({ activePage, setActivePage }) {
             </div> 
 
              {/* Average Attendance */}
-            <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition">
-              <div className="flex items-center justify-between">
+             <div className="bg-white p-4 rounded-lg shadow border border-gray-100 hover:shadow-md hover:border-gray-300 transition -transform duration-200 hover:-translate-y-1 hover:shadow-xl">
+             <div className="flex items-center justify-between">
                 <p className="text-base font-bold text-gray-600">Avg. Attendance</p>
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#f27213" }}>
                   <img src="/images/average_attendance.png" alt="Users" className="w-4 h-4" />
