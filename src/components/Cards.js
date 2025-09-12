@@ -421,59 +421,66 @@ export default function Cards({ activePage, setActivePage }) {
                 </td>
                 <td>{request.totalScans}</td>
 
-                <td className="relative flex items-center gap-3">
-  {/* Eye icon for view */}
-  <button
-    className="text-gray-600 hover:text-gray-900"
-    onClick={() => alert(`Viewing details for ${request.name}`)}
-    aria-label="View details"
-  >
-    <img src="/images/eye_icon.png" alt="View" className="w-5 h-5" />
-  </button>
+                <td className="py-3">
+  <div className="flex items-center gap-3">
+    {/* Eye icon for view */}
+    <button
+      className="text-gray-600 hover:text-gray-900"
+      onClick={() => alert(`Viewing details for ${request.name}`)}
+      aria-label="View details"
+    >
+      <img src="/images/eye_icon.png" alt="View" className="w-5 h-5" />
+    </button>
 
-  {/* Stats icon */}
-  <button
-    className="text-gray-600 hover:text-gray-900"
-    onClick={() => alert(`Viewing stats for ${request.name}`)}
-    aria-label="View stats"
-  >
-    <img src="/images/stats.png" alt="Stats" className="w-5 h-5" />
-  </button>
-                  <button
-                    className="text-gray-600 text-xl"
-                    onClick={() => toggleActionMenu(request.id)}
-                    aria-label="Open actions menu"
-                  >
-                    ⋯
-                  </button>
+    {/* Stats icon */}
+    <button
+      className="text-gray-600 hover:text-gray-900"
+      onClick={() => alert(`Viewing stats for ${request.name}`)}
+      aria-label="View stats"
+    >
+      <img src="/images/stats.png" alt="Stats" className="w-5 h-5" />
+    </button>
 
-                  {activeActionId === request.id && (
-                    <div className="absolute right-0 mt-1 w-36 bg-white border border-gray-200  shadow-lg z-40">
-                      
+    {/* Dots section */}
+    <div className="relative">
+      <button
+        className="text-gray-600 text-xl"
+        onClick={() => toggleActionMenu(request.id)}
+        aria-label="Open actions menu"
+      >
+        ⋯
+      </button>
 
-                      <button
-                        className="flex items-center gap-2 w-full bg-white px-4 py-2  text-black"
-                        onClick={() => handleStatusChange(request.id, "Active")}
-                      >
-                        <img src="images/issued_card.png" alt="Issued" />
-                        Issue Card
-                      </button>
+      {activeActionId === request.id && (
+        <div className="absolute right-0 mt-1 w-36 bg-white border border-gray-200 shadow-lg z-40 rounded-md">
+          <button
+            className="flex items-center gap-2 w-full bg-white px-4 py-2 text-sm hover:bg-gray-100 text-gray-800"
+            onClick={() => handleStatusChange(request.id, "Active")}
+          >
+            <img src="/images/issued_card.png" alt="Issue Card" className="w-4 h-4" />
+            Issue Card
+          </button>
 
-                      <button
-                        className="flex items-center gap-2 w-full px-4 py-2  border border-red-500 text-red-500"
-                        onClick={() => handleStatusChange(request.id, "Revoked")}
-                      >
-                        <img src="images/revoke_card.png" alt="Revoke" className="w-4 h-4" />
-                        Revoke Card
-                      </button>
-                    </div>
-                  )}
-                </td>
-              </tr>
+          <button
+            className="flex items-center gap-2 w-full px-4 py-2 text-sm border-t border-red-100 hover:bg-red-50 text-red-500"
+            onClick={() => handleStatusChange(request.id, "Revoked")}
+          >
+            <img src="/images/revoke_card.png" alt="Revoke Card" className="w-4 h-4" />
+            Revoke Card
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+</td>
+</tr>
+                  
+             
             ))}
         </tbody>
       </table>
     </div>
+    
 
     <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
       <p>
