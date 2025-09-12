@@ -221,7 +221,7 @@ export default function Cards({ activePage, setActivePage }) {
               <p className="text-sm font-bold text-gray-600">Active Cards</p>
               <div
                 className="w-10 h-10 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: "#f27213" }}
+                style={{ backgroundColor: "#5ac96a" }}
               >
                 <img
                   src="/images/approved.png"
@@ -239,10 +239,10 @@ export default function Cards({ activePage, setActivePage }) {
               <p className="text-sm font-bold text-gray-600">Total Scans</p>
               <div
                 className="w-10 h-10 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: "#5ac96a" }}
+                style={{ backgroundColor: "#f27213" }}
               >
                 <img
-                  src="/images/approved.png"
+                  src="/images/scans.png"
                   alt="Users"
                   className="w-5 h-5"
                 />
