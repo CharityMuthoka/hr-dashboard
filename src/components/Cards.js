@@ -37,7 +37,7 @@ export default function Cards({ activePage, setActivePage }) {
       name: "David Wilson",
       department: "Engineering",
       image: "/images/david.png",
-      cardname: "Victor Josh – Senior Designer",  // This looks like a possible error in screenshot? Maybe should be "David Wilson – Product Manager" or similar
+      cardname: "Victor Josh – Senior Designer",  
       template: "Creative",
       status: "Revoked",
       totalScans: 0,
