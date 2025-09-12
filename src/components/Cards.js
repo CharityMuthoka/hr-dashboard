@@ -224,7 +224,7 @@ export default function Cards({ activePage, setActivePage }) {
                 style={{ backgroundColor: "#f27213" }}
               >
                 <img
-                  src="/images/Approved.png"
+                  src="/images/approved.png"
                   alt="Users"
                   className="w-5 h-5"
                 />
