@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 
+import CardPreviewModal from "./CardPreviewModal";
+import StatsModal from "./StatsModal";
 
 
 
@@ -10,6 +12,10 @@ export default function Cards({ activePage, setActivePage }) {
     day: "numeric",
     year: "numeric",
   });
+
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [isStatsOpen, setIsStatsOpen] = React.useState(false);
+const [selectedName, setSelectedName] = React.useState("");
 
   const [leaveRequests, setLeaveRequests] = useState([
     {
@@ -27,7 +33,7 @@ export default function Cards({ activePage, setActivePage }) {
       name: "Victor Josh",
       department: "Design",
       image: "/images/michael.png",
-      cardname: "Victor Josh – Senior Designer",
+      cardname: "Victor Josh - Senior Designer",
       template: "Creative",
       status: "Pending",
       totalScans: 0,
@@ -37,7 +43,7 @@ export default function Cards({ activePage, setActivePage }) {
       name: "David Wilson",
       department: "Engineering",
       image: "/images/david.png",
-      cardname: "Victor Josh – Senior Designer",  // This looks like a possible error in screenshot? Maybe should be "David Wilson – Product Manager" or similar
+      cardname: "Victor Josh - Senior Designer",  
       template: "Creative",
       status: "Revoked",
       totalScans: 0,
@@ -47,7 +53,7 @@ export default function Cards({ activePage, setActivePage }) {
       name: "Lisa Anderson",
       department: "Engineering",
       image: "/images/lisa.png",
-      cardname: "Lisa Anderson – Senior Designer",
+      cardname: "Lisa Anderson - Senior Designer",
       template: "Creative",
       status: "Active",
       totalScans: 223,
@@ -425,21 +431,25 @@ export default function Cards({ activePage, setActivePage }) {
   <div className="flex items-center gap-3">
     {/* Eye icon for view */}
     <button
-      className="text-gray-600 hover:text-gray-900"
-      onClick={() => alert(`Viewing details for ${request.name}`)}
-      aria-label="View details"
-    >
-      <img src="/images/eye_icon.png" alt="View" className="w-5 h-5" />
-    </button>
+  className="text-gray-600 hover:text-gray-900"
+  onClick={() => setSelectedCard(request)} 
+  aria-label="View details"
+>
+  <img src="/images/eye_icon.png" alt="View" className="w-5 h-5" />
+</button>
 
     {/* Stats icon */}
     <button
-      className="text-gray-600 hover:text-gray-900"
-      onClick={() => alert(`Viewing stats for ${request.name}`)}
-      aria-label="View stats"
-    >
-      <img src="/images/stats.png" alt="Stats" className="w-5 h-5" />
-    </button>
+  className="text-gray-600 hover:text-gray-900"
+  onClick={() => {
+    setSelectedName(request.name);
+    setIsStatsOpen(true);
+  }}
+  aria-label="View stats"
+>
+  <img src="/images/stats.png" alt="Stats" className="w-5 h-5" />
+</button>
+
 
     {/* Dots section */}
     <div className="relative">
@@ -545,6 +555,20 @@ export default function Cards({ activePage, setActivePage }) {
 </div>
 
       </div>
+
+       {/* Card Preview Modal */}
+       <CardPreviewModal
+        isOpen={!!selectedCard}
+        onClose={() => setSelectedCard(null)}
+        cardData={selectedCard}
+      />
+
+<StatsModal
+  isOpen={isStatsOpen}
+  onClose={() => setIsStatsOpen(false)}
+  name={selectedName}
+/>
+
     </div>
   );
 }

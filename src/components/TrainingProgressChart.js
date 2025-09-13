@@ -38,8 +38,10 @@ const TrainingProgressChart = ({ data, onSegmentClick }) => {
   };
 
   return (
+    <div className="w-40 h-40">
     <div className="flex justify-center items-center h-full">
       <Doughnut data={chartData} options={options} />
+    </div>
     </div>
   );
 };

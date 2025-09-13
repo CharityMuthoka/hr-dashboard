@@ -257,7 +257,8 @@ export default function Dashboard() {
         </div>
 
         {/* Table + Leave Requests section */}
-        <div className="flex flex-col lg:flex-row gap-4 mt-6">
+        <div className="flex flex-col lg:flex-row gap-4 mt-6 items-start">
+
           {/* Employee Table */}
           <div className="bg-white rounded-lg border border-gray-100 shadow p-4 flex-1">
             <div className=" -mx-4 px-4 border-b pb-2 mb-4 flex justify-between items-center ">
@@ -272,7 +273,7 @@ export default function Dashboard() {
               </button>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto max-h-fit">
               <table className="w-full text-sm text-left">
                 <thead className="text-gray-500 border-b">
                   <tr>

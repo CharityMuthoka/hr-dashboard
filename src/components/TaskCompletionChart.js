@@ -76,8 +76,8 @@ const TaskCompletionChart = ({ data }) => {
   };
 
   return (
-    <div style={{ height: '300px' }}>
-      <Bar data={chartData} options={options} />
+<div style={{ height: '250px', width: '300px' }}> 
+  <Bar data={chartData} options={options} />
     </div>
   );
 };
