@@ -148,7 +148,7 @@ export default function Announcements({ activePage, setActivePage }) {
             <div className="flex items-center justify-between">
               <p className="text-sm font-bold text-gray-600 ">This Week</p>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#6065f8" }}>
-                <img src="/images/total_days.png" alt="Users" className="w-5 h-5" />
+                <img src="/images/Total_days.png" alt="Users" className="w-5 h-5" />
               </div>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mt-2">8</h3>
