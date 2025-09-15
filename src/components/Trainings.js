@@ -757,7 +757,7 @@ export default function Trainings({ activePage, setActivePage }) {
           }}
           className="w-1/2 bg-teal-500 text-white px-5 py-2 rounded-md text-sm hover:bg-teal-600"
         >
-          Publish
+          Publish Course
         </button>
       </div>
     </div>
