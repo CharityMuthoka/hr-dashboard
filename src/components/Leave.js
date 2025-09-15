@@ -312,6 +312,149 @@ export default function Task({ activePage, setActivePage }) {
             </div>
           </div>
 
+{/* Today's Clock-ins & Todos */}
+<div className="bg-white mt-6 rounded-lg border border-gray-100 shadow p-4">
+  <div className="flex justify-between items-center border-b pb-3">
+    <div>
+      <h2 className="text-lg font-semibold text-gray-900">Today's Clock-ins & Todo's</h2>
+      <p className="text-sm text-gray-500">View what employees are working on today (14 checked in)</p>
+    </div>
+    <button className="flex items-center gap-1 text-sm text-teal-600 border border-teal-500 px-3 py-1.5 rounded hover:bg-teal-50">
+    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+  <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+</svg>
+
+      Live Updates
+    </button>
+  </div>
+
+  <div className="overflow-x-auto mt-4">
+    <table className="w-full text-sm text-left">
+      <thead className="text-gray-500">
+        <tr>
+          <th className="py-2">Employee</th>
+          <th>Department</th>
+          <th>Today's Tasks</th>
+          <th>Clock In</th>
+          <th>Clock Out</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody className="text-gray-700">
+        {[
+          {
+            name: "Sarah Johnson",
+            status: "Checked",
+            type: "Remote",
+            color: "blue",
+            department: "Marketing",
+            tasks: ["Working on HR Dashboard"],
+            clockIn: "8:15 AM",
+            clockOut: "5:58 PM",
+            image: "/images/sarah.png"
+          },
+          {
+            name: "Nathanael Mumo",
+            status: "Pending",
+            type: "Hybrid",
+            color: "orange",
+            department: "Marketing",
+            tasks: ["Blog and linked in update", "Ontap branding"],
+            clockIn: "8:15 AM",
+            clockOut: "⋯",
+            image: "/images/michael.png"
+          },
+          {
+            name: "Peter William",
+            status: "Pending",
+            type: "In-Office",
+            color: "#4fc560",
+            department: "Tech",
+            tasks: ["Blog and linked in update", "Ontap branding"],
+            clockIn: "8:15 AM",
+            clockOut: "⋯",
+            image: "/images/david.png"
+          },
+          {
+            name: "Lisa Anderson",
+            status: "Pending",
+            type: "In-Office",
+            color: "#4fc560",
+            department: "Human Resource",
+            tasks: ["Blog and linked in update", "Ontap branding"],
+            clockIn: "8:15 AM",
+            clockOut: "⋯",
+            image: "/images/lisa.png"
+          },
+        ].map((emp, index) => (
+          <tr key={index} className="border-b last:border-none">
+            <td className="py-3">
+              <div className="flex items-center gap-3">
+                <img
+                  src={emp.image}
+                  alt={emp.name}
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-medium text-gray-800">{emp.name}</p>
+                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <span
+                      className={`w-2 h-2 rounded-full`}
+                      style={{ backgroundColor: emp.color }}
+                    />
+                    {emp.type}
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>{emp.department}</td>
+            <td className="text-sm text-gray-600">
+              {emp.tasks.map((task, i) => (
+                <p key={i}>
+                  {i + 1}. {task}
+                </p>
+              ))}
+            </td>
+            <td className="text-sm text-gray-800">{emp.clockIn}</td>
+            <td className="text-l text-gray-600">{emp.clockOut}</td>
+            <td>
+              {emp.status === "Checked" ? (
+                <span
+                className="text-xs px-3 py-1 rounded-full"
+                style={{ backgroundColor: '#17ae9e', color: 'white' }}
+              >
+                Checked
+              </span>
+              
+              ) : (
+                <span
+                className="text-xs px-3 py-1 rounded-full"
+                style={{ backgroundColor: '#fcedd7', color: '#d38159' }}
+              >
+                Pending
+              </span>
+              
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+    <p>Showing 4 to 25</p>
+    <div className="flex gap-2">
+      <button className="px-3 py-1 border rounded hover:bg-gray-100">Previous</button>
+      <button className="px-3 py-1 bg-teal-500 text-white rounded">1</button>
+      <button className="px-3 py-1 border rounded hover:bg-gray-100">2</button>
+      <button className="px-3 py-1 border rounded hover:bg-gray-100">3</button>
+      <button className="px-3 py-1 border rounded hover:bg-gray-100">Next</button>
+    </div>
+  </div>
+</div>
+
+
           {/* Leave Request Table */}
           <div className="flex flex-col lg:flex-row gap-4 mt-6">
   <div className="bg-white rounded-lg border border-gray-100 shadow p-4 flex-1">
@@ -492,148 +635,6 @@ export default function Task({ activePage, setActivePage }) {
 </div>
 
 
-
-{/* Today's Clock-ins & Todos */}
-<div className="bg-white mt-6 rounded-lg border border-gray-100 shadow p-4">
-  <div className="flex justify-between items-center border-b pb-3">
-    <div>
-      <h2 className="text-lg font-semibold text-gray-900">Today's Clock-ins & Todo's</h2>
-      <p className="text-sm text-gray-500">View what employees are working on today (14 checked in)</p>
-    </div>
-    <button className="flex items-center gap-1 text-sm text-teal-600 border border-teal-500 px-3 py-1.5 rounded hover:bg-teal-50">
-    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-  <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-</svg>
-
-      Live Updates
-    </button>
-  </div>
-
-  <div className="overflow-x-auto mt-4">
-    <table className="w-full text-sm text-left">
-      <thead className="text-gray-500">
-        <tr>
-          <th className="py-2">Employee</th>
-          <th>Department</th>
-          <th>Today's Tasks</th>
-          <th>Clock In</th>
-          <th>Clock Out</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody className="text-gray-700">
-        {[
-          {
-            name: "Sarah Johnson",
-            status: "Checked",
-            type: "Remote",
-            color: "blue",
-            department: "Marketing",
-            tasks: ["Working on HR Dashboard"],
-            clockIn: "8:15 AM",
-            clockOut: "5:58 PM",
-            image: "/images/sarah.png"
-          },
-          {
-            name: "Nathanael Mumo",
-            status: "Pending",
-            type: "Hybrid",
-            color: "orange",
-            department: "Marketing",
-            tasks: ["Blog and linked in update", "Ontap branding"],
-            clockIn: "8:15 AM",
-            clockOut: "⋯",
-            image: "/images/michael.png"
-          },
-          {
-            name: "Peter William",
-            status: "Pending",
-            type: "In-Office",
-            color: "#4fc560",
-            department: "Tech",
-            tasks: ["Blog and linked in update", "Ontap branding"],
-            clockIn: "8:15 AM",
-            clockOut: "⋯",
-            image: "/images/david.png"
-          },
-          {
-            name: "Lisa Anderson",
-            status: "Pending",
-            type: "In-Office",
-            color: "#4fc560",
-            department: "Human Resource",
-            tasks: ["Blog and linked in update", "Ontap branding"],
-            clockIn: "8:15 AM",
-            clockOut: "⋯",
-            image: "/images/lisa.png"
-          },
-        ].map((emp, index) => (
-          <tr key={index} className="border-b last:border-none">
-            <td className="py-3">
-              <div className="flex items-center gap-3">
-                <img
-                  src={emp.image}
-                  alt={emp.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-medium text-gray-800">{emp.name}</p>
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <span
-                      className={`w-2 h-2 rounded-full`}
-                      style={{ backgroundColor: emp.color }}
-                    />
-                    {emp.type}
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>{emp.department}</td>
-            <td className="text-sm text-gray-600">
-              {emp.tasks.map((task, i) => (
-                <p key={i}>
-                  {i + 1}. {task}
-                </p>
-              ))}
-            </td>
-            <td className="text-sm text-gray-800">{emp.clockIn}</td>
-            <td className="text-l text-gray-600">{emp.clockOut}</td>
-            <td>
-              {emp.status === "Checked" ? (
-                <span
-                className="text-xs px-3 py-1 rounded-full"
-                style={{ backgroundColor: '#17ae9e', color: 'white' }}
-              >
-                Checked
-              </span>
-              
-              ) : (
-                <span
-                className="text-xs px-3 py-1 rounded-full"
-                style={{ backgroundColor: '#fcedd7', color: '#d38159' }}
-              >
-                Pending
-              </span>
-              
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-
-  <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-    <p>Showing 4 to 25</p>
-    <div className="flex gap-2">
-      <button className="px-3 py-1 border rounded hover:bg-gray-100">Previous</button>
-      <button className="px-3 py-1 bg-teal-500 text-white rounded">1</button>
-      <button className="px-3 py-1 border rounded hover:bg-gray-100">2</button>
-      <button className="px-3 py-1 border rounded hover:bg-gray-100">3</button>
-      <button className="px-3 py-1 border rounded hover:bg-gray-100">Next</button>
-    </div>
-  </div>
-</div>
 
 
             </div>

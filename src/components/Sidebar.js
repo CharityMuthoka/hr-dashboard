@@ -2,17 +2,22 @@ import React from 'react';
 
 const menuItems = [
   { name: 'Dashboard', key: 'dashboard', icon: '/images/dashboard_2.png' },
+  {name: 'Staffcycle', key:'staffcycle', icon: '/images/myprofile2.png'},
   {name: 'Employees', key: 'employees', icon: '/images/Frame.png'},
-  { name: 'Task', key: 'task', icon: '/images/task.png' },
   { name: 'Leave & Attendance', key: 'leave', icon: '/images/leave.png' },
+  {name: 'Performance', key:'performance', icon: '/images/performance.png'},
+  { name: 'Task', key: 'task', icon: '/images/task.png' },
   { name: 'Pay Roll', key: 'payroll', icon: '/images/payslips.png' },
   { name: 'Trainings', key: 'trainings', icon: '/images/trainings.png' },
   { name: 'Digital Cards', key: 'cards', icon: '/images/digital_cards.png' },
   { name: 'Announcements', key: 'announcements', icon: '/images/announcements.png' },
+  {name: 'Settings', key: 'settings', icon: '/images/settings.png'},
+];
+{/*
   {name: 'Help & Support', key: 'help', icon: '/images/help.png'},
   { name: 'My Profile', key: 'profile', icon: '/images/my_profile.png' },
-  {name: 'Settings', key: 'settings', icon: '/images/settings.png'}
-];
+
+*/}
 
 export default function Sidebar({ activePage, setActivePage }) {
     return (

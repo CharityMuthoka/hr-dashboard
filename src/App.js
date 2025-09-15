@@ -5,6 +5,8 @@ import Auth from './components/auth';
 import Employees from './components/Employees';
 import Task from './components/Task';
 import Leave from './components/Leave';
+import Staffcycle from './components/Staffcycle';
+import Performance from './components/Performance';
 import Payroll from './components/Payroll';
 import Trainings from './components/Trainings';
 import Cards from './components/Cards';
@@ -36,6 +38,9 @@ function App() {
     switch (activePage) {
       case "dashboard":
         return <Dashboard setActivePage={setActivePage} activePage={activePage} />;
+
+        case "staffcycle":
+          return <Staffcycle setActivePage={setActivePage} activePage={(activePage)} />;
         
         case "employees":
         return <Employees setActivePage={setActivePage} activePage={activePage} />;
@@ -45,6 +50,9 @@ function App() {
 
         case "leave":
           return <Leave setActivePage={setActivePage} activePage={activePage} />;
+
+        case "performance":
+          return <Performance setActivePage={setActivePage} activePage={activePage} />;
 
         case "payroll":
           return <Payroll setActivePage={setActivePage} activePage={activePage} />;

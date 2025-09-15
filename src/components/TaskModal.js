@@ -95,7 +95,7 @@ const TaskModal = ({ isOpen, onClose, task, onUpdateTask }) => {
           </div>
         </div>
 
-        {/* Thin Horizontal Separator */}
+        {/* divider */}
         <div className="w-full border-t border-gray-200 mb-4"></div>
 
         {/* Main Content Area */}
