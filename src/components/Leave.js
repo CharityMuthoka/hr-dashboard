@@ -283,37 +283,9 @@ export default function Task({ activePage, setActivePage }) {
     
 </div>
 </div>
-        {/* Search & Filters */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mt-6">
-            <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 py-2 w-full lg:w-1/2 shadow-sm">
-              <img src="/images/search.png" alt="Search Icon" className="w-4 h-4 text-gray-400 mr-2" />
-              <input
-                type="text"
-                placeholder="Search payslips"
-                className="flex-1 outline-none text-sm placeholder-gray-400 bg-transparent"
-              />
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button className="flex items-center gap-1 text-sm text-gray-700 bg-white border border-gray-300 px-3 py-1.5 rounded hover:bg-gray-100 transition">
-                <img src="/images/filter.png" alt="Filter Icon" className="w-4 h-4" />
-                All Status
-                <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414L10 13.414l-4.707-4.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-
-              <button className="flex items-center gap-1 text-sm text-gray-700 bg-white border border-gray-300 px-3 py-1.5 rounded hover:bg-gray-100 transition">
-                All Types
-                <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414L10 13.414l-4.707-4.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
+        
 {/* Today's Clock-ins & Todos */}
-<div className="bg-white mt-6 rounded-lg border border-gray-100 shadow p-4">
+<div className="bg-white mt-6 rounded-lg border border-gray-100 shadow p-4 ">
   <div className="flex justify-between items-center border-b pb-3">
     <div>
       <h2 className="text-lg font-semibold text-gray-900">Today's Clock-ins & Todo's</h2>
@@ -453,6 +425,37 @@ export default function Task({ activePage, setActivePage }) {
     </div>
   </div>
 </div>
+
+
+
+{/* Search & Filters */}
+<div className="flex flex-col lg:flex-row justify-between items-center gap-4 mt-6">
+    <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 py-2 w-full lg:w-1/2 shadow-sm">
+      <img src="/images/search.png" alt="Search Icon" className="w-4 h-4 text-gray-400 mr-2" />
+          <input
+            type="text"
+            placeholder="Search payslips"
+              className="flex-1 outline-none text-sm placeholder-gray-400 bg-transparent"
+              />
+            </div>
+
+<div className="flex items-center gap-3">
+    <button className="flex items-center gap-1 text-sm text-gray-700 bg-white border border-gray-300 px-3 py-1.5 rounded hover:bg-gray-100 transition">
+       <img src="/images/filter.png" alt="Filter Icon" className="w-4 h-4" />
+          All Status
+            <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414L10 13.414l-4.707-4.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+              </button>
+
+    <button className="flex items-center gap-1 text-sm text-gray-700 bg-white border border-gray-300 px-3 py-1.5 rounded hover:bg-gray-100 transition">
+        All Types
+          <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
+             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414L10 13.414l-4.707-4.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+              </button>
+            </div>
+          </div>
 
 
           {/* Leave Request Table */}
