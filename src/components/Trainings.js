@@ -271,7 +271,7 @@ export default function Trainings({ activePage, setActivePage }) {
               <p className="text-sm font-normal text-gray-900 mt-2">Badges earned</p>
             </div>
           </div>
-        </div>
+        
 {/* Tabs section */}
 <div className="mt-10">
 
@@ -391,7 +391,7 @@ export default function Trainings({ activePage, setActivePage }) {
    
 
 </div>
-
+</div>
 
 
 {showNewEmployeeModal && (
@@ -740,6 +740,7 @@ export default function Trainings({ activePage, setActivePage }) {
         </ul>
       </div>
     </div>
+    
 
     <div className="border-t border-gray-300 my-4"></div>
 
@@ -763,6 +764,7 @@ export default function Trainings({ activePage, setActivePage }) {
     </div>
   )}
 </div>
+
 
 
 
