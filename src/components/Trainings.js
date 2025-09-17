@@ -884,21 +884,22 @@ const [modules, setModules] = useState([
       <div>
         <h3 className="text-base font-semibold text-gray-700 mb-3">Course Information</h3>
         <ul className="text-sm text-gray-600 space-y-2">
+          
           <li>
-            <strong>Title:</strong> {courseInfo.title ? <span className="ml-1">{courseInfo.title}</span> : <strong className="ml-1">Not specified</strong>}
+            Title:<strong className="ml-5">Not specified</strong>
           </li>
           <li>
-            <strong>Category:</strong> {courseInfo.category ? <span className="ml-1">{courseInfo.category}</span> : <strong className="ml-1">Not specified</strong>}
+            Category:<strong className="ml-5">Not specified</strong>
           </li>
           <li>
-            <strong>Difficulty:</strong> {courseInfo.difficulty ? <span className="ml-1">{courseInfo.difficulty}</span> : <strong className="ml-1">Not specified</strong>}
+            Difficulty:<strong className="ml-5">Not specified</strong>
           </li>
           <li>
-            <strong>Duration:</strong> {courseInfo.duration ? <span className="ml-1">{courseInfo.duration}</span> : <strong className="ml-1">Not specified</strong>}
-          </li>
-          <li>
-            <strong>Instructor:</strong> {courseInfo.instructor ? <span className="ml-1">{courseInfo.instructor}</span> : <strong className="ml-1">Not specified</strong>}
-          </li>
+            Duration:<strong className="ml-5">Not specified</strong>
+            </li>
+            <li>
+              Instructor:<strong className="ml-5">Not specified</strong>
+            </li>
         </ul>
       </div>
 
@@ -906,10 +907,19 @@ const [modules, setModules] = useState([
       <div>
         <h3 className="text-base font-semibold text-gray-700 mb-3">Content Summary</h3>
         <ul className="text-sm text-gray-600 space-y-2">
-          <li><strong>Modules:</strong> {modules.length || 0}</li>
-          <li><strong>Course Files:</strong> {courseFiles?.length || 0}</li>
-          <li><strong>Total Module Files:</strong> {modules.reduce((acc, mod) => acc + (mod.files?.length || 0), 0)}</li>
-          <li><strong>Target Audience:</strong> {targetAudience || 'Not specified'}</li>
+          
+          <li>
+            Modules:<strong className="ml-5">Not specified</strong>
+          </li>
+          <li>
+            Course Files:<strong className="ml-5">Not specified</strong>
+          </li>
+          <li>
+            Total Module Files:<strong className="ml-5">Not specified</strong>
+            </li>
+            <li>
+              Target Audience:<strong className="ml-5">Not specified</strong>
+            </li>
         </ul>
       </div>
     </div>
