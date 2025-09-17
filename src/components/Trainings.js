@@ -10,31 +10,150 @@ export default function Trainings({ activePage, setActivePage }) {
   const [activeStep, setActiveStep] = useState(1);
 
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const [courseFiles, setCourseFiles] = useState([]);
 
+  
+  const handleNext = () => {
+    const form = document.getElementById("add-course-form");  
+    
+    if (form.checkValidity()) {
+      setErrors({});
+      
+      setActiveStep((prev) => prev + 1);
+    } else {
+      form.reportValidity();
+    }
+  };
 
-  const courseInfo = {
-    title: "Leadership Skills",
-    category: "Professional Development",
-    difficulty: "Intermediate",
-    duration: "45 minutes",
-    instructor: "John Doe",
+  
+
+  const handleNextFromStep2 = () => {
+    const form = document.getElementById("course-content-form");
+  
+    // Check at least one uploaded file
+    if (courseFiles.length === 0) {
+      alert("Please upload at least one course material.");
+      return;
+    }
+  
+    // Check at least one module exists
+    if (modules.length === 0) {
+      alert("Please add at least one module.");
+      return;
+    }
+  
+    // Validate all required fields in the form
+    if (form && form.checkValidity()) {
+      setActiveStep(3); 
+    } else {
+      form?.reportValidity(); 
+    }
   };
   
-  const modules = [
-    {
-      title: "Introduction",
-      description: "Module overview",
-      files: [{ name: "intro.pdf" }, { name: "overview.mp4" }],
-    },
-    {
-      title: "Effective Communication",
-      description: "Communication strategies",
-      files: [{ name: "slides.pptx" }],
-    },
-  ];
   
-  const targetAudience = "Team Leads, Managers";
+  
+ 
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (form.checkValidity()) {
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      console.log("Submitted Employee Data:", data);
+    } else {
+      form.reportValidity();
+    }
+  };
+
+  const handleAddModule = () => {
+    setModules([
+      ...modules,
+      {
+        title: '',
+        duration: '',
+        description: '',
+        files: [],
+      },
+    ]);
+  };
+  
+  const handleModuleChange = (index, field, value) => {
+    const updatedModules = [...modules];
+    updatedModules[index][field] = value;
+    setModules(updatedModules);
+  };
+  
+  
+  
+  const handleRemoveModule = (index) => {
+    const updatedModules = [...modules];
+    updatedModules.splice(index, 1);
+    setModules(updatedModules);
+  };
+  
+  const handleCourseFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    setCourseFiles(files);
+  };
+  
+  
+
+  const handleModuleFileChange = (index, files) => {
+    const updatedModules = [...modules];
+    updatedModules[index].files = Array.from(files);
+    setModules(updatedModules);
+  };
+  
+  
+ 
+
+
+  const [courseInfo, setCourseInfo] = useState({
+    title: "",
+    instructor: "",
+    category: "",
+    targetAudience: "",
+    difficulty: "",
+    duration: "",
+  });
+  
+  const [errors, setErrors] = useState({});
+  
+  const validateStep1 = () => {
+    const newErrors = {};
+  
+    if (!courseInfo.title.trim()) newErrors.title = "Course title is required";
+    if (!courseInfo.instructor.trim()) newErrors.instructor = "Instructor name is required";
+    if (!courseInfo.category) newErrors.category = "Category is required";
+    if (!courseInfo.targetAudience) newErrors.targetAudience = "Target audience is required";
+    if (!courseInfo.difficulty) newErrors.difficulty = "Difficulty level is required";
+    if (!courseInfo.duration) newErrors.duration = "Estimated duration is required";
+  
+    setErrors(newErrors);
+  
+    // Returns true if no errors
+    return Object.keys(newErrors).length === 0;
+  };
+  
+ 
+  
+  
+  
+
+  const [courseFiles, setCourseFiles] = useState([]);
+const [modules, setModules] = useState([
+  {
+    title: '',
+    duration: '',
+    description: '',
+    files: []
+  }
+]);
+
+
+  
+  const [targetAudience, setTargetAudience] = useState("");
   
   const [employees, setEmployees] = useState([
     {
@@ -449,6 +568,8 @@ export default function Trainings({ activePage, setActivePage }) {
 
   {/* STEP 1: Course Details */}
   {activeStep === 1 && (
+      <form id="add-course-form" onSubmit={(e) => e.preventDefault()}>
+
     <div className="space-y-6">
       <div className="grid grid-cols-2 gap-4">
         <div>
@@ -459,6 +580,12 @@ export default function Trainings({ activePage, setActivePage }) {
             type="text"
             placeholder="Enter course title..."
             className="w-full border border-gray-200 rounded-md p-2 text-sm"
+            value={courseInfo.title}
+            onChange={(e) =>
+              setCourseInfo({ ...courseInfo, title: e.target.value })
+            }
+            required
+          
           />
         </div>
         <div>
@@ -469,38 +596,73 @@ export default function Trainings({ activePage, setActivePage }) {
             type="text"
             placeholder="Enter instructor name..."
             className="w-full border border-gray-200 rounded-md p-2 text-sm"
+            value={courseInfo.instructor}
+            onChange={(e) =>
+              setCourseInfo({ ...courseInfo, instructor: e.target.value })
+            }
+            required
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">
-            Category
-          </label>
-          <select className="w-full border border-gray-200 rounded-md p-2 text-sm">
-            <option>Select category</option>
-          </select>
-        </div>
+  <label className="block text-xs font-medium text-gray-600 mb-1">
+    Category
+  </label>
+  <select
+  required
+    value={courseInfo.category}
+    onChange={(e) =>
+      setCourseInfo({ ...courseInfo, category: e.target.value })
+    }
+    
+    className="w-full border border-gray-200 rounded-md p-2 text-sm"
+  >
+    <option value="">Select category</option>
+   
+  </select>
+</div>
+
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">
             Target Audience
           </label>
-          <select className="w-full border border-gray-200 rounded-md p-2 text-sm">
-            <option>Select audience</option>
+          <select
+          required
+          value={courseInfo.targetAudience}
+          onChange={(e) =>
+            setCourseInfo({ ...courseInfo, targetAudience: e.target.value})
+          }
+           className="w-full border border-gray-200 rounded-md p-2 text-sm">
+            <option value="">Select audience</option>
           </select>
         </div>
+
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">
             Difficulty Level
           </label>
-          <select className="w-full border border-gray-200 rounded-md p-2 text-sm">
-            <option>Select difficulty</option>
+          <select 
+          required
+          value={courseInfo.difficulty}
+          onChange={(e) =>
+            setCourseInfo({ ... courseInfo, difficulty: e.target.value})
+          }
+          className="w-full border border-gray-200 rounded-md p-2 text-sm">
+            <option value="">Select difficulty</option>
           </select>
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">
+          <label
+          className="block text-xs font-medium text-gray-600 mb-1">
             Estimated Duration
           </label>
-          <select className="w-full border border-gray-200 rounded-md p-2 text-sm">
-            <option>Select category</option>
+          <select 
+          required
+          value={courseInfo.duration}
+          onChange={(e) =>
+            setCourseInfo({ ... courseInfo, duration: e.target.value})
+          }
+          className="w-full border border-gray-200 rounded-md p-2 text-sm">
+            <option value="">Select category</option>
           </select>
         </div>
       </div>
@@ -516,67 +678,69 @@ export default function Trainings({ activePage, setActivePage }) {
           Cancel
         </button>
         <button
-          onClick={() => setActiveStep(2)}
-          className="w-1/2 bg-teal-500 text-white px-5 py-2 rounded-md text-sm hover:bg-teal-600"
-        >
-          Next
-        </button>
+  type="button"
+  onClick={handleNext}
+  className="w-1/2 bg-teal-500 text-white px-5 py-2 rounded-md text-sm hover:bg-teal-600"
+>
+  Next
+</button>
+
       </div>
     </div>
+    </form>
   )}
 
   {/* STEP 2: Content & Modules section*/}
   {activeStep === 2 && (
+      <form id="course-content-form" onSubmit={(e) => e.preventDefault()}>
+
     <div className="h-[300px] overflow-y-auto px-1 pr-3 space-y-6">
       {/* Course Materials Upload */}
       <div>
-        <h2 className="text-sm font-bold text-gray-700 mb-2">
-          Course Materials
-        </h2><div className="border border-dashed border-gray-300 rounded-md p-6 text-center bg-gray-50">
-  <img
-    src="images/upload_file.png"
-    alt="upload"
-    className="mx-auto mb-4 w-14 h-14 object-contain"
-  />
-  <p className="text-sm text-gray-600 mb-1">Upload course materials</p>
+  <h2 className="text-sm font-bold text-gray-700 mb-2">Course Materials</h2>
+  <div className="border border-dashed border-gray-300 rounded-md p-6 text-center bg-gray-50">
+    <img
+      src="images/upload_file.png"
+      alt="upload"
+      className="mx-auto mb-4 w-14 h-14 object-contain"
+    />
+    <p className="text-sm text-gray-600 mb-1">Upload course materials</p>
 
+    <p className="text-xs text-gray-400 mb-4">
+      Supported formats: PDF, DOCX, PPTX, MP4, AVI, JPG, PNG (Max: 100MB each)
+    </p>
 
-          <p className="text-xs text-gray-400 mb-4">
-            Supported formats: PDF, DOCX, PPTX, MP4, AVI, JPG, PNG (Max: 100MB
-            each)
-          </p>
+    <input
+      type="file"
+      id="file-upload"
+      className="hidden"
+      multiple
+      accept=".pdf,.docx,.pptx,.mp4,.avi,.jpg,.jpeg,.png"
+      onChange={handleCourseFileChange} 
+    />
 
-   {/* Hidden file input */}
-   <input
-                type="file"
-                id="file-upload"
-                className="hidden"
-                multiple
-                accept=".pdf,.docx,.pptx,.mp4,.avi,.jpg,.jpeg,.png"
-                onChange={handleFileChange}
-              />
-          <label
-  htmlFor="file-upload"
-  className="cursor-pointer bg-teal-500 text-white px-4 py-2 text-sm rounded hover:bg-teal-600 inline-block"
->
-  + Choose Files
-</label>
+    <label
+      htmlFor="file-upload"
+      className="cursor-pointer bg-teal-500 text-white px-4 py-2 text-sm rounded hover:bg-teal-600 inline-block"
+    >
+      + Choose Files
+    </label>
 
-{uploadedFiles.length > 0 && (
-  <div className="mt-4 text-left">
-    <p className="text-sm font-semibold text-gray-700 mb-2">Selected Files:</p>
-    <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
-      {uploadedFiles.map((file, index) => (
-        <li key={index}>{file.name}</li>
-      ))}
-    </ul>
-  </div>
-)}
-
-
-
-        </div>
+    {/* coursefiles section  */}
+    {courseFiles.length > 0 && (
+      <div className="mt-4 text-left">
+        <p className="text-sm font-semibold text-gray-700 mb-2">Selected Files:</p>
+        <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
+          {courseFiles.map((file, index) => (
+            <li key={index}>{file.name}</li>
+          ))}
+        </ul>
       </div>
+    )}
+  </div>
+</div>
+
+
 
       {/* Course Modules */}
       <div>
@@ -584,95 +748,106 @@ export default function Trainings({ activePage, setActivePage }) {
           <h2 className="text-sm font-bold text-gray-700">
             Course Modules
           </h2>
-          <button className="text-sm text-teal-600 font-medium border border-teal-500 rounded-md px-4 py-2">
-            + Add Module
-          </button>
+          <button
+  type="button"
+  onClick={handleAddModule}
+  className="text-sm text-teal-600 font-medium border border-teal-500 rounded-md px-4 py-2"
+>
+  + Add Module
+</button>
+
         </div>
 
         {/* Module 1 section */}
         <div className="border border-gray-200 rounded-md p-4 bg-white space-y-4 relative shadow-sm">
-          <button className="absolute top-2 right-2 text-red-500  text-lg font-semibold">
-            &times;
-          </button>
-          <div className="font-semibold text-sm text-gray-700">Module 1</div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">
-                Module Title
-              </label>
-              <input
-                type="text"
-                placeholder="Enter module title..."
-                className="w-full border border-gray-200 rounded-md p-2 text-sm"
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-gray-600 mb-1">
-                Duration
-              </label>
-              <input
-                type="text"
-                placeholder="e.g. 45 minutes"
-                className="w-full border border-gray-200 rounded-md p-2 text-sm"
-              />
-            </div>
-          </div>
+  <button className="absolute top-2 right-2 text-red-500 text-lg font-semibold">
+    &times;
+  </button>
+
+  <div className="font-semibold text-sm text-gray-700">Module 1</div>
+
+  <div className="grid grid-cols-2 gap-4">
+    <div>
+      <label className="block text-xs font-medium text-gray-600 mb-1">
+        Module Title
+      </label>
+      <input
+        type="text"
+        placeholder="Enter module title..."
+        className="w-full border border-gray-200 rounded-md p-2 text-sm"
+        required
+      />
+    </div>
+
+    <div>
+      <label className="block text-xs font-medium text-gray-600 mb-1">
+        Duration
+      </label>
+      <input
+        type="text"
+        placeholder="e.g. 45 minutes"
+        className="w-full border border-gray-200 rounded-md p-2 text-sm"
+        required
+      />
+    </div>
+  </div>
+
 
           {/* Description */}
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">
-              Module Description
-            </label>
-            <textarea
-              rows={3}
-              placeholder="Describe what the module covers..."
-              className="w-full border border-gray-200 rounded-md p-2 text-sm"
-            />
-          </div>
+        <label className="block text-xs font-medium text-gray-600 mb-1">
+          Module Description
+        </label>
+        <textarea
+          rows={3}
+          placeholder="Describe what the module covers..."
+          className="w-full border border-gray-200 rounded-md p-2 text-sm"
+        />
+      </div>
 
-          {/* File Upload */}
-          <div className="border border-dashed border-gray-300 rounded-md p-4 text-center bg-gray-50">
-       {/* Hidden file input */}
-       <input
+      {/* File Upload for each Module */}
+      {modules.map((module, index) => (
+  <div key={index} className="border border-dashed border-gray-300 rounded-md p-4 text-center bg-gray-50">
+    <input
       type="file"
-      id="file-upload"
+      id={`module-file-upload-${index}`}  
       className="hidden"
       multiple
       accept=".pdf,.docx,.pptx,.mp4,.avi,.jpg,.jpeg,.png"
-      onChange={(e) => {
-        const files = e.target.files;
-        console.log(files); 
-      }}
+      onChange={(e) => handleModuleFileChange(index, e.target.files)} 
     />
- 
-            
-            <img
-            src={"images/upload.png"} alt="upload" 
-            className="mx-auto mb-4 w-24 h-24 object-contain"
-                 />
-                 
-            <p className="text-sm text-gray-600 mb-1">Module 1 Files</p>
-            <p className="text-xs text-gray-400">
-  Drop files to attach or{' '}
-  <label
-    htmlFor="file-upload"
-    className="text-xs text-white bg-teal-500 font-medium cursor-pointer px-3 py-1 rounded hover:bg-teal-600 inline-block"
-  >
-    browse
-  </label>
-</p>
+    <img
+      src={"images/upload.png"}
+      alt="upload"
+      className="mx-auto mb-4 w-24 h-24 object-contain"
+    />
+    <p className="text-sm text-gray-600 mb-1">Module {index + 1} Files</p>
+    <p className="text-xs text-gray-400">
+      Drop files to attach or{' '}
+      <label
+        htmlFor={`module-file-upload-${index}`} 
+        className="text-xs text-white bg-teal-500 font-medium cursor-pointer px-3 py-1 rounded hover:bg-teal-600 inline-block"
+      >
+        browse
+      </label>
+    </p>
 
-{uploadedFiles.length > 0 && (
-  <div className="mt-4 text-left">
-    <p className="text-sm font-semibold text-gray-700 mb-2">Selected Files:</p>
-    <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
-      {uploadedFiles.map((file, index) => (
-        <li key={index}>{file.name}</li>
-      ))}
-    </ul>
+    {/*  Display files specific to this module */}
+    {module.files?.length > 0 && (
+      <div className="mt-4 text-left">
+        <p className="text-sm font-semibold text-gray-700 mb-2">Selected Files:</p>
+        <ul className="list-disc pl-5 text-sm text-gray-600 space-y-1">
+          {module.files.map((file, fileIndex) => (
+            <li key={fileIndex}>{file.name}</li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
-)}
-          </div>
+))}
+
+
+
         </div>
       </div>
 
@@ -688,18 +863,17 @@ export default function Trainings({ activePage, setActivePage }) {
           Previous
         </button>
         <button
-          onClick={() => setActiveStep(3)}
+          onClick={handleNextFromStep2}
           className="w-1/2 bg-teal-500 text-white px-5 py-2 rounded-md text-sm hover:bg-teal-600"
         >
           Next
         </button>
       </div>
     </div>
+    </form>
   )}
 
-  {/* STEP 3: Review & Publish */}
-  
-  {activeStep === 3 && (
+{activeStep === 3 && (
   <div className="space-y-6">
     {/* Review Summary */}
     <div className="grid grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
@@ -710,23 +884,22 @@ export default function Trainings({ activePage, setActivePage }) {
       <div>
         <h3 className="text-base font-semibold text-gray-700 mb-3">Course Information</h3>
         <ul className="text-sm text-gray-600 space-y-2">
-  <li>
-    <strong>Title:</strong> {courseInfo.title ? <span className="ml-1">{courseInfo.title}</span> : <strong className="ml-1">Not specified</strong>}
-  </li>
-  <li>
-    <strong>Category:</strong> {courseInfo.category ? <span className="ml-1">{courseInfo.category}</span> : <strong className="ml-1">Not specified</strong>}
-  </li>
-  <li>
-    <strong>Difficulty:</strong> {courseInfo.difficulty ? <span className="ml-1">{courseInfo.difficulty}</span> : <strong className="ml-1">Not specified</strong>}
-  </li>
-  <li>
-    <strong>Duration:</strong> {courseInfo.duration ? <span className="ml-1">{courseInfo.duration}</span> : <strong className="ml-1">Not specified</strong>}
-  </li>
-  <li>
-    <strong>Instructor:</strong> {courseInfo.instructor ? <span className="ml-1">{courseInfo.instructor}</span> : <strong className="ml-1">Not specified</strong>}
-  </li>
-</ul>
-
+          <li>
+            <strong>Title:</strong> {courseInfo.title ? <span className="ml-1">{courseInfo.title}</span> : <strong className="ml-1">Not specified</strong>}
+          </li>
+          <li>
+            <strong>Category:</strong> {courseInfo.category ? <span className="ml-1">{courseInfo.category}</span> : <strong className="ml-1">Not specified</strong>}
+          </li>
+          <li>
+            <strong>Difficulty:</strong> {courseInfo.difficulty ? <span className="ml-1">{courseInfo.difficulty}</span> : <strong className="ml-1">Not specified</strong>}
+          </li>
+          <li>
+            <strong>Duration:</strong> {courseInfo.duration ? <span className="ml-1">{courseInfo.duration}</span> : <strong className="ml-1">Not specified</strong>}
+          </li>
+          <li>
+            <strong>Instructor:</strong> {courseInfo.instructor ? <span className="ml-1">{courseInfo.instructor}</span> : <strong className="ml-1">Not specified</strong>}
+          </li>
+        </ul>
       </div>
 
       {/* Content Summary */}
@@ -741,6 +914,9 @@ export default function Trainings({ activePage, setActivePage }) {
       </div>
     </div>
     
+  
+
+
 
     <div className="border-t border-gray-300 my-4"></div>
 

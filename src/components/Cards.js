@@ -23,7 +23,7 @@ const [selectedName, setSelectedName] = React.useState("");
       name: "Sarah Johnson",
       department: "Engineering",
       image: "/images/sarah.png",
-      cardname: "Sarah Johnson – Senior Developer",
+      cardname: "Sarah Johnson - Senior Developer",
       template: "Modern Professional",
       status: "Active",
       totalScans: 80,
