@@ -9,9 +9,7 @@ const Auth = ({ onLoginSuccess }) => {
 
   const demoUsers = [
     { email: 'admin@ontap.com', password: 'password123' },
-    { email: 'head@ontap.com', password: 'password123' },
     { email: 'demo@ontap.com', password: 'password123' },
-    { email: 'demo2@ontap.com', password: 'password123' },
   ];
 
   const togglePasswordVisibility = () => {
@@ -55,7 +53,7 @@ const Auth = ({ onLoginSuccess }) => {
       {/* White shadow container section */}
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-xl">  
               {/* Login Form */}
-              <div className="text-center">
+      <div className="text-center">
   <h4 className="font-bold">Sign in To your Account</h4>
   <p className='text-base text-gray-500 mb-4'>Enter your credentials to access your personalized dashboard</p>
 </div>
