@@ -629,8 +629,6 @@ export default function Settings({ activePage, setActivePage }) {
           <label className="text-sm font-medium text-gray-700">Timezone</label>
           <select className="w-full border px-3 py-2 rounded-md text-sm">
             <option>Eastern Time (UTC-5)</option>
-            <option>Central Time (UTC-6)</option>
-            <option>Pacific Time (UTC-8)</option>
           </select>
         </div>
 
@@ -664,8 +662,6 @@ export default function Settings({ activePage, setActivePage }) {
           <label className="text-sm font-medium text-gray-700">Language</label>
           <select className="w-full border px-3 py-2 rounded-md text-sm">
             <option>English</option>
-            <option>French</option>
-            <option>Spanish</option>
           </select>
         </div>
       </div>
