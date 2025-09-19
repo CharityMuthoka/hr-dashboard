@@ -17,8 +17,10 @@ import Settings from './components/Settings';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activePage, setActivePage] = useState("dashboard");
-  const [isLoading,setIsLoading]= useState("true");
+const [activePage, setActivePage] = useState(() => {
+  return localStorage.getItem("activePage") || "dashboard";
+});
+const [isLoading,setIsLoading]= useState("true");
 
   useEffect(() => {
     const auth = localStorage.getItem("isAuthenticated");
