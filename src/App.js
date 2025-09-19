@@ -30,6 +30,10 @@ const [isLoading,setIsLoading]= useState("true");
     }
   }, []);
 
+  useEffect(() => {
+  localStorage.setItem("activePage", activePage);
+}, [activePage]);
+
   const handleLoginSuccess = (email) => {
     setIsAuthenticated(true);
     localStorage.setItem("isAuthenticated", "true");
