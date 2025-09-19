@@ -20,7 +20,6 @@ function App() {
 const [activePage, setActivePage] = useState(() => {
   return localStorage.getItem("activePage") || "dashboard";
 });
-const [isLoading,setIsLoading]= useState("true");
 
   useEffect(() => {
     const auth = localStorage.getItem("isAuthenticated");
