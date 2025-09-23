@@ -366,13 +366,13 @@ export default function Dashboard() {
   )}
 </td>
 
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+</tr>
+  ))}
+  </tbody>
+    </table>
+      </div>
 
-            <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+        <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
   
   <p>
   Showing {(currentPage - 1) * itemsPerPage + 1} to {employees.length} entries
