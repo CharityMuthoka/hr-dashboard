@@ -49,11 +49,7 @@ export default function Trainings({ activePage, setActivePage }) {
     }
   };
   
-  
-  
  
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -106,9 +102,6 @@ export default function Trainings({ activePage, setActivePage }) {
   };
   
   
- 
-
-
   const [courseInfo, setCourseInfo] = useState({
     title: "",
     instructor: "",
@@ -136,11 +129,6 @@ export default function Trainings({ activePage, setActivePage }) {
     return Object.keys(newErrors).length === 0;
   };
   
- 
-  
-  
-  
-
   const [courseFiles, setCourseFiles] = useState([]);
 const [modules, setModules] = useState([
   {
@@ -150,7 +138,6 @@ const [modules, setModules] = useState([
     files: []
   }
 ]);
-
 
   
   const [targetAudience, setTargetAudience] = useState("");
@@ -242,8 +229,6 @@ const [modules, setModules] = useState([
   });
 
   
-
- 
 
   const handleToggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -924,11 +909,7 @@ const [modules, setModules] = useState([
         </ul>
       </div>
     </div>
-    
   
-
-
-
     <div className="border-t border-gray-300 my-4"></div>
 
       {/* Navigation Buttons */}

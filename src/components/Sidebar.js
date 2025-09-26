@@ -13,11 +13,7 @@ const menuItems = [
   { name: 'Announcements', key: 'announcements', icon: '/images/announcements.png' },
   {name: 'Settings', key: 'settings', icon: '/images/settings.png'},
 ];
-{/*
-  {name: 'Help & Support', key: 'help', icon: '/images/help.png'},
-  { name: 'My Profile', key: 'profile', icon: '/images/my_profile.png' },
 
-*/}
 
 export default function Sidebar({ activePage, setActivePage }) {
     return (

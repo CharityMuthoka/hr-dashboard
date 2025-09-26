@@ -41,25 +41,10 @@ export default function Dashboard() {
         }
       };
       
-     
-
       const handleStatusChange = (id, newStatus) => {
-        switch (newStatus) {
-          case "view":
-            alert(`Viewing details for ${id}`);
-            break;
-          case "edit":
-            alert(`Editing ${id}`);
-            break;
-          case "disable":
-            alert(`Disabling ${id}`);
-            break;
-          default:
-            console.log(`Unhandled action: ${newStatus}`);
-        }
+        console.log(`Changing status for ${id} to ${newStatus}`);
         setActiveActionId(null);
       };
-      
 
 
   const today = new Date();
@@ -333,39 +318,46 @@ export default function Dashboard() {
                         <span className="bg-black text-white text-xs px-3 py-1 rounded-full">Active</span>
                       </td>
   
-<td className="relative">
+
+  <td className="relative">
   <button
     className="text-gray-600 text-xl"
-    onClick={() => toggleActionMenu(emp.email)}
+    onClick={() => toggleActionMenu(emp.email)} 
     aria-label="Open actions menu"
   >
     ⋯
   </button>
 
-  {activeActionId === emp.email && (
+  {activeActionId === emp.email && (  
     <div className="absolute right-0 mt-1 w-36 bg-white border border-gray-200 rounded-md shadow-lg z-40">
-      {/* View Details */}
       <button
         className="flex items-center gap-2 w-full px-4 py-2 rounded-full hover:bg-gray-100 text-gray-700"
-        onClick={() => handleStatusChange(emp.email, "view")}
+        onClick={() => {
+          alert(`Viewing details for ${emp.name}`);
+          setActiveActionId(null);
+        }}
       >
         <img src="/images/eye_icon.png" alt="View" className="w-4 h-4" />
         View Details
       </button>
 
-      {/* Edit */}
       <button
         className="flex items-center gap-2 w-full px-4 py-2 rounded-full hover:bg-gray-100 text-gray-700"
-        onClick={() => handleStatusChange(emp.email, "edit")}
+        onClick={() => {
+          alert(`Editing ${emp.name}`);
+          setActiveActionId(null);
+        }}
       >
         <img src="/images/edit_employee.png" alt="Edit" className="w-4 h-4" />
         Edit
       </button>
 
-      {/* Disable */}
       <button
         className="flex items-center gap-2 w-full px-4 py-2 rounded-full hover:bg-gray-100 text-red-600"
-        onClick={() => handleStatusChange(emp.email, "disable")}
+        onClick={() => {
+          alert(`Disabling ${emp.name}`);
+          setActiveActionId(null);
+        }}
       >
         <img src="/images/disable.png" alt="Disable" className="w-4 h-4" />
         Disable
@@ -374,14 +366,13 @@ export default function Dashboard() {
   )}
 </td>
 
+</tr>
+  ))}
+  </tbody>
+    </table>
+      </div>
 
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
+        <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
   
   <p>
   Showing {(currentPage - 1) * itemsPerPage + 1} to {employees.length} entries
