@@ -25,7 +25,6 @@ const [activePage, setActivePage] = useState(() => {
     const auth = localStorage.getItem("isAuthenticated");
     if (auth === "true") {
       setIsAuthenticated(true);
-      setIsLoading(false);
     }
   }, []);
 
