@@ -107,11 +107,11 @@ return (
     className="bg-teal-500 text-white px-4 py-2 rounded-md text-sm hover:bg-teal-600 flex items-center gap-2"
   >
     <img src="/images/add_employees.png" alt="Add New Hire" className="w-4 h-4" />
-    Add New Hire
+    Add Employee
   </button>
 
   <button
-  onClick={() => alert("Offboarding process initiated")}
+  onClick={() => alert("Onboarding process initiated")}
   className="bg-white px-4 py-2 rounded-md text-sm flex items-center gap-2"
   style={{
     border: '1px solid #17ae9e',
@@ -123,7 +123,7 @@ return (
     alt="Initiate Offboarding"
     className="w-4 h-4"
   />
-  Initiate Offboarding
+  Start Onboarding
 </button>
 
 </div>
@@ -177,6 +177,7 @@ return (
             </div>
 
            </div>
+ 
 
            {/* Tabs section */}
 <div className="mt-10">

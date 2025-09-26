@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 export default function Announcements({ activePage, setActivePage }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [showNewEmployeeModal, setShowNewEmployeeModal] = useState(false);
+  const [ showAnnouncementModal, setShowAnnouncementModal]= useState(false);
 
   // Dummy employees data
   const employees = [
@@ -104,7 +104,7 @@ export default function Announcements({ activePage, setActivePage }) {
           </div>
 
           <button
-            onClick={() => setShowNewEmployeeModal(true)}
+            onClick={() => setShowAnnouncementModal(true)}
             className="mt-4 lg:mt-0 bg-teal-500 text-white px-4 py-2 rounded-md text-sm hover:bg-teal-600 flex items-center gap-2"
           >
             <img src="/images/addtask.png" alt="add employees" className="w-4 h-4" />

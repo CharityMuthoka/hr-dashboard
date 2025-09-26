@@ -7,6 +7,19 @@ export default function Settings({ activePage, setActivePage }) {
   const [showNewRoleModal, setShowNewRoleModal] = useState(false);
   const [activeTab, setActiveTab] = useState('permissions');
 
+  const fileInputRef= useRef(null);
+
+  const handleUploadClick =() => {
+    fileInputRef.current?.click();
+  }
+
+  const handleFileChange = (event) => {
+    const file =event.target.files?.[0];
+    if (file) {
+      console.log("Selected logo file:", file);
+    }
+  };
+
   //date section
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', {
@@ -557,12 +570,23 @@ export default function Settings({ activePage, setActivePage }) {
       <h3 className="text-base text-dark font-semibold mb-4">Company Information</h3>
       <h4 className="text-base text-dark font-semibold mb-4">Company Logo</h4>
       <div className="space-y-4">
+        {/* hidden file input */}
+        <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        style={{ display:'none'}}
+        />
         {/* Logo Upload */}
         <div className="flex items-center space-x-4">
           <div className="w-16 h-16 bg-teal-500 rounded-md flex items-center justify-center text-white text-sm font-semibold">
             Logo
           </div>
-          <button className="px-4 py-2 border rounded text-sm hover:bg-gray-100 flex items-center gap-2">
+          <button
+          type="button"
+          onClick={handleUploadClick}
+           className="px-4 py-2 border rounded text-sm hover:bg-gray-100 flex items-center gap-2">
             <img src={'/images/download_profile.png'} alt='upload logo' />
             Upload Logo
           </button>
@@ -629,8 +653,6 @@ export default function Settings({ activePage, setActivePage }) {
           <label className="text-sm font-medium text-gray-700">Timezone</label>
           <select className="w-full border px-3 py-2 rounded-md text-sm">
             <option>Eastern Time (UTC-5)</option>
-            <option>Central Time (UTC-6)</option>
-            <option>Pacific Time (UTC-8)</option>
           </select>
         </div>
 
@@ -638,8 +660,6 @@ export default function Settings({ activePage, setActivePage }) {
           <label className="text-sm font-medium text-gray-700">Currency</label>
           <select className="w-full border px-3 py-2 rounded-md text-sm">
             <option>USD - US Dollar</option>
-            <option>EUR - Euro</option>
-            <option>GBP - British Pound</option>
           </select>
         </div>
 
@@ -664,8 +684,6 @@ export default function Settings({ activePage, setActivePage }) {
           <label className="text-sm font-medium text-gray-700">Language</label>
           <select className="w-full border px-3 py-2 rounded-md text-sm">
             <option>English</option>
-            <option>French</option>
-            <option>Spanish</option>
           </select>
         </div>
       </div>
@@ -764,7 +782,7 @@ export default function Settings({ activePage, setActivePage }) {
 
 
         {/* Shift pattern toggle */}
-        <div className="flex items-start justify-between py-2">
+  <div className="flex items-start justify-between py-2">
   <div>
     <label className="text-sm font-medium text-gray-700 block">
       Shifts Patterns

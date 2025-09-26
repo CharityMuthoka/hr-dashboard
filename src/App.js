@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react';
+import React,{ useState , useEffect} from 'react';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import Auth from './components/auth';
@@ -17,8 +17,10 @@ import Settings from './components/Settings';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activePage, setActivePage] = useState("dashboard");
-  const [isLoading,setIsLoading]= useState("true");
+  const [activePage, setActivePage] = useState(() => {
+    return localStorage.getItem("activePage") || "dashboard";
+  });
+    const [isLoading,setIsLoading]= useState("true");
 
   useEffect(() => {
     const auth = localStorage.getItem("isAuthenticated");
@@ -27,6 +29,10 @@ function App() {
       setIsLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("activePage", activePage);
+  }, [activePage]);
 
   const handleLoginSuccess = (email) => {
     setIsAuthenticated(true);

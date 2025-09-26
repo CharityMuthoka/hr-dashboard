@@ -1,10 +1,23 @@
-import { React, useState, useRef } from 'react';
+import  React, {  useState, useRef } from 'react';
 import NewEmployeeModal from './NewEmployeeModal';
 
 export default function Employees({ activePage, setActivePage }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [showNewEmployeeModal, setShowNewEmployeeModal] = useState(false);
+  const [activeActionId, setActiveActionId] = React.useState(null);
+
+  const [profileTab, setProfileTab] = React.useState("personal");
+
+
+  const toggleActionMenu = (id) =>{
+    if (activeActionId === id) {
+      setActiveActionId(null);
+    }else {
+      setActiveActionId(id);
+    
+    };
+  }
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", {
@@ -16,7 +29,7 @@ export default function Employees({ activePage, setActivePage }) {
   const [currentPage, setCurrentPage] = useState(1);
 const itemsPerPage = 4;
 
-  const [employees, setEmployees] = useState([
+  const [employees] = useState([
     {
       name: "Sarah Johnson",
       email: "sarah.johnson@email.com",
@@ -57,6 +70,8 @@ const itemsPerPage = 4;
   const handleToggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
+  const [activeTab, setActiveTab] = useState('employees');
+
 
   return (
     <>
@@ -178,6 +193,37 @@ const itemsPerPage = 4;
             </div>
           </div>
 
+          {/*tabs switcher section */}
+          <div className="mt-10">
+            <div className="flex rounded-lg border border-slate-100 bg-slate-50 overflow-hidden">
+              {/* Employees Tab */}
+              <div
+              className={`flex items-center justify-center h-10 w-1/2 ${
+                activeTab === 'employees' ? 'bg-white' : '#c7d6db'
+              }`}
+              onClick={() => setActiveTab('employees')}
+              >
+                <div className={`text-sm text-neutral-900 ${activeTab === 'employees' ? 'font-semibold' : 'font-medium'}`}>
+                employees
+                </div>
+              </div>
+              {/* Employees record Tab */}
+              <div
+              className={`flex items-center justify-center h-10 w-1/2 ${
+                activeTab === 'employees records' ? 'bg-white' : '#c7d6db'
+              }`}
+              onClick={() => setActiveTab('employees records')}
+              >
+                <div className={`text-sm text-neutral-900 ${activeTab === 'employees records' ? 'font-semibold' : 'font-medium'}`}>
+                  employees records
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {activeTab === 'employees' && (
+            <>
           {/* Search & Filters */}
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mt-6">
             <div className="flex items-center bg-white border border-gray-200 rounded-lg px-3 py-2 w-full lg:w-1/2 shadow-sm">
@@ -242,14 +288,46 @@ const itemsPerPage = 4;
                         <td>
                           <span className="bg-black text-white text-xs px-3 py-1 rounded-full">Active</span>
                         </td>
-                        <td>
-                          <button className="text-gray-600 text-xl">⋯</button>
+                        <td className="relative">
+                          <button
+                          className="text-gray-600 text-xl"
+                          onClick={() => toggleActionMenu(emp.email)}
+                          aria-label="Open actions menu"
+                          >
+                            ...
+                          </button>
+                          {activeActionId === emp.email && (
+                            <div className="absolute right-0 mt-1 w-36 bg-white border border-gray-200 rounded-md shadow-lg z-40">
+                              <button
+                              className="flex  items-center gap-2 w-full px-4 py-2  hover:bg-gray-100 text-gray-700"
+                              onClick={() => {
+                                alert(`Viewing records ${emp.name}`);
+                                setActiveActionId(null);
+                              }}
+                              >
+                                <img src="/images/edit_employee.png" alt="Edit" className="w-4 h-4" />
+                                View Records
+                              </button>
+
+                              <button
+                              className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-gray-700"
+                              onClick={() => {
+                                alert(`Disabling ${emp.name}`);
+                                setActiveActionId(null);
+                              }}
+                              >
+                                <img src="/images/disable.png" alt="Disable" className="w-4 h-4" />
+                                Disable
+                              </button>
+                            </div>
+                          )}
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+
 
               <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
   
@@ -306,16 +384,429 @@ const itemsPerPage = 4;
 </div>
 </div>
 
+    </div>
+    </div>
+        
+      </>
+      )}
+    {activeTab === 'employees records' && (
+  <div className="mt-6 bg-white rounded-lg shadow border border-gray-100 p-6">
+    {/* Header */}
+    <div className="flex justify-between items-center mb-6">
+      <h2 className="text-lg font-semibold text-gray-800">Employee Records</h2>
+      <button className="px-4 py-2 bg-teal-500 text-white text-sm rounded-md hover:bg-teal-600">
+        Edit Profile
+      </button>
+    </div>
 
+    <div className="flex gap-8">
+      {/* Left Column */}
+      <div className="w-1/3 flex flex-col items-center border-r pr-6 border rounded">
+      <div className="relative">
+        <img
+          src="/images/sarah.png"
+          alt="profile"
+          className="w-32 h-32 rounded-full object-cover border shadow"
+        />
+        <div className="absolute bottom-0 right-0 flex items-center justify-center w-8 h-8 bg-white rounded-full shadow-md border border-gray-200">
+          <img
+            className="w-7 h-7 object-contain"
+            src="/images/image_upload.png"
+              alt="image upload"
+              />
             </div>
+        </div>
+        <h3 className="mt-3 text-md font-semibold">Sarah Johnson</h3>
+        <p className="text-sm text-gray-500">Junior Product Designer</p>
+
+        <div className="mt-6 w-full space-y-3 text-sm text-gray-600">
+          <div className="flex items-center gap-2 ml-2">
+            <img src="/images/email.png" alt="email" className="w-4 h-4" />
+            <span>sarah@company.com</span>
+          </div>
+          <div className="flex items-center gap-2 ml-2">
+            <img src="/images/call.png" alt="phone" className="w-4 h-4" />
+            <span>+234 7099767789</span>
+          </div>
+          <div className="flex items-center gap-2 ml-2">
+            <img src="/images/calendar.png" alt="calendar" className="w-4 h-4" />
+            <span>Started 2023-09-13</span>
           </div>
         </div>
       </div>
+
+      {/* Right Column */}
+      <div className="w-2/3 border rounded">
+        {/* Tab State */}
+        {(() => {
+
+          return (
+            <>
+              {/* Tabs */}
+              <div className="flex border-b border-gray-200 mb-4">
+                <button
+                  className={`px-4 py-2 text-sm  ${
+                    profileTab === "personal"
+                      ? "border-b border-gray-500 border rounded font-semibold"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => setProfileTab("personal")}
+                >
+                  Personal Details
+                </button>
+                <button
+                  className={` px-4 py-2 text-sm  ${
+                    profileTab === "employment"
+                      ? "border-b border-gray-500 border rounded font-semibold"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => setProfileTab("employment")}
+                >
+                  Employment Details
+                </button>
+                <button
+                  className={`flex-1 px-4 py-2 text-sm ${
+                    profileTab === "documents"
+                      ? "border-b border-gray-500 border rounded font-semibold"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => setProfileTab("documents")}
+                >
+                  Documents & Compliance
+                </button>
+              </div>
+
+              {/* Content */}
+              {profileTab === "personal" && (
+                <div>
+                  <div className="grid grid-cols-2 gap-6 text-sm">
+                    <div>
+                      <p className="text-gray-500">Full Name</p>
+                      <p className="font-medium border  bg-gray-100 p-2">Sarah Johnson</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Gender</p>
+                      <p className="font-medium border bg-gray-100 p-2">Female</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Employee ID</p>
+                      <p className="font-medium border bg-gray-100 p-2">Sarah Johnson</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Work ID</p>
+                      <p className="font-medium border bg-gray-100 p-2">Female</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Date of Birth</p>
+                      <p className="font-medium border bg-gray-100 p-2">23/01/1990</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Bank Name</p>
+                      <p className="font-medium border bg-gray-100 p-2">Grey Bank</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Bank Account Number</p>
+                      <p className="font-medium border bg-gray-100 p-2">23456799</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-500">Routing Number</p>
+                      <p className="font-medium border bg-gray-100 p-2">2378893B</p>
+                    </div>
+                  </div>
+
+                  {/* Emergency Info */}
+                  <div className="mt-8">
+                    <h3 className="font-semibold text-gray-800 mb-4">
+                      Emergency Information
+                    </h3>
+                    {/* divider */}
+                    <div className="pt-2 border-t border-neurtal-200">
+                      </div>
+
+                    <div className="grid grid-cols-2 gap-6 text-sm">
+                      <div>
+                        <p className="text-gray-500">Full Name</p>
+                        <p className="font-medium border bg-gray-100 p-2">Mary Cynthia</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500">Gender</p>
+                        <p className="font-medium border bg-gray-100 p-2">Female</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500">Email</p>
+                        <p className="font-medium border bg-gray-100 p-2">marycynthia09@gmail.com</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500">Phone Number</p>
+                        <p className="font-medium border bg-gray-100 p-2">+234 7099767789</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-500">Relationship</p>
+                        <p className="font-medium border bg-gray-100 p-2">Sister</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {profileTab === "employment" && (
+                <div className="grid grid-cols-2 gap-6 text-sm">
+                  <div>
+                      <p className="text-gray-500">Job Title</p>
+                      <p className="font-medium border  bg-gray-100 p-2">Software Engineer</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-500">Department</p>
+                      <p className="font-medium border bg-gray-100 p-2">Engineering</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-500">Supervisor</p>
+                      <p className="font-medium border bg-gray-100 p-2">Mark Reuben</p>
+                    </div>
+
+                    <div>
+                        <p className="text-gray-500">Date of Hire</p>
+                        <p className="font-medium border bg-gray-100 p-2">13/08/2023</p>
+                    </div>
+
+                    <div>
+                      <p className="text-gray-500">Employment Status</p>
+                      <p className="font-medium border bg-gray-100 p-2">Full Time</p>
+                     </div>
+                     <div>
+                      <p className="text-gray-500">Work Location</p>
+                      <p className="font-medium border bg-gray-100 p-2">Remote</p>
+                     </div>
+
+                     <div>
+                      <p className="text-gray-500">Proficient Language</p>
+                      <p className="font-medium border bg-gray-100 p-2">English</p>
+                     </div>
+
+                     <div>
+                      <p className="text-gray-500">Tool of Trade</p>
+                      <p className="font-medium border bg-gray-100 p-2">None</p>
+                      </div>
+
+                      <div>
+                        <p className="text-gray-500">Salary</p>
+                        <p className="font-medium border bg-gray-100 p-2"> $800</p>
+                      </div>
+
+                      <div>
+                        <p className="text-gray-500">Probation Period</p>
+                        <p className="font-medium border bg-gray-100 p-2">90 days</p>
+                        </div>
+                 
+                </div>
+              )}
+
+              {profileTab === "documents" && (
+                <div className="space-y-4 text-sm">
+                   <div className="flex items-center space-x-1">
+                          <img src="images/documents.png" alt="uploaded icon" className="w-4 h-4" />
+                         <h3 className="text-base text-black-600 font-semibold">Documents & Compliance</h3>
+                        </div>
+                        
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-white border rounded-lg p-4 shadow-sm">
+
+                      <div className="flex justify-between items-center mb-1">
+                        <h2 className=" text-gray-600 font-semibold">Employement Contract</h2>
+                        <div className="flex items-center space-x-1">
+                          <img src="images/uploaded.png" alt="uploaded icon" className="w-4 h-4" />
+                         <h3 className="text-xs text-gray-600 font-semibold">Uploaded</h3>
+                        </div>
+
+                      </div>
+                      <p className="text-sm font-medium text-gray-800">Sarah_Johnson_Contr.pdf</p>
+                      <p className="text-xs text-gray-500 mb-3 mt-2">Uploaded on 2023-08-13</p>
+                      <div className="flex space-x-4 text-gray-600 ">
+                        <button className="text-blue-600" title="view">
+                        <img src="images/eye_icon.png" alt="eye icon" className="w-6 h-6"/>
+                       </button>
+                      <button className="hover:text-green-600" title="Download">
+                      <img src="images/download.png" alt="download icon" className="w-6 h-6"/>
+
+                      </button>
+                     <button className="hover:text-red-500" title="Delete">
+                     <img src="images/trash.png" alt="trash icon" className="w-6 h-6"/>
+
+                     </button>
+                      </div>
+                    </div>
+                    <div className="bg-white border rounded-lg p-4 shadow-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <h2 className=" text-gray-600 font-semibold">Passport</h2>
+                        <div className="flex items-center space-x-1">
+                          <img src="images/uploaded.png" alt="uploaded icon" className="w-4 h-4" />
+                         <h3 className="text-xs text-gray-600 font-semibold">Uploaded</h3>
+                        </div>
+
+                      </div>
+                      <p className="text-sm font-medium text-gray-800">Sarah_Johnson_Passport.pdf</p>
+                      <p className="text-xs text-gray-500 mb-3 mt-2">Uploaded on 2023-08-13</p>
+                      <div className="flex space-x-4 text-gray-600 ">
+                        <button className="text-blue-600" title="view">
+                        <img src="images/eye_icon.png" alt="eye icon" className="w-6 h-6"/>
+                       </button>
+                      <button className="hover:text-green-600" title="Download">
+                      <img src="images/download.png" alt="download icon" className="w-6 h-6"/>
+
+                      </button>
+                     <button className="hover:text-red-500" title="Delete">
+                     <img src="images/trash.png" alt="trash icon" className="w-6 h-6"/>
+
+                     </button>
+                      </div>
+                    </div>
+
+                    <div className="bg-white border rounded-lg p-4 shadow-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <h2 className=" text-gray-600 font-semibold">BSC Certificate</h2>
+                        <div className="flex items-center space-x-1">
+                          <img src="images/uploaded.png" alt="uploaded icon" className="w-4 h-4" />
+                         <h3 className="text-xs text-gray-600 font-semibold">Uploaded</h3>
+                        </div>
+
+                      </div>
+                      <p className="text-sm font-medium text-gray-800">Sarah_Johnson_Cert.pdf</p>
+                      <p className="text-xs text-gray-500 mb-3 mt-2">Uploaded on 2023-08-13</p>
+                      <div className="flex space-x-4 text-gray-600 ">
+                        <button className="text-blue-600" title="view">
+                        <img src="images/eye_icon.png" alt="eye icon" className="w-6 h-6"/>
+                       </button>
+                      <button className="hover:text-green-600" title="Download">
+                      <img src="images/download.png" alt="download icon" className="w-6 h-6"/>
+
+                      </button>
+                     <button className="hover:text-red-500" title="Delete">
+                     <img src="images/trash.png" alt="trash icon" className="w-6 h-6"/>
+
+                     </button>
+                      </div>
+                    </div>
+
+                    <div className="bg-white border rounded-lg p-4 shadow-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <h2 className=" text-gray-600 font-semibold">National ID</h2>
+                        <div className="flex items-center space-x-1">
+                          <img src="images/uploaded.png" alt="uploaded icon" className="w-4 h-4" />
+                         <h3 className="text-xs text-gray-600 font-semibold">Uploaded</h3>
+                        </div>
+
+                      </div>
+                      <p className="text-sm font-medium text-gray-800">Sarah_Johnson_Id.pdf</p>
+                      <p className="text-xs text-gray-500 mb-3 mt-2">Uploaded on 2023-08-13</p>
+                      <div className="flex space-x-4 text-gray-600 ">
+                        <button className="text-blue-600" title="view">
+                        <img src="images/eye_icon.png" alt="eye icon" className="w-6 h-6"/>
+                       </button>
+                      <button className="hover:text-green-600" title="Download">
+                      <img src="images/download.png" alt="download icon" className="w-6 h-6"/>
+
+                      </button>
+                     <button className="hover:text-red-500" title="Delete">
+                     <img src="images/trash.png" alt="trash icon" className="w-6 h-6"/>
+
+                     </button>
+                      </div>
+                    </div>
+
+                    <div className="bg-white border rounded-lg p-4 shadow-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <h2 className=" text-gray-600 font-semibold">Medical Certificate</h2>
+                        <div className="flex items-center space-x-1">
+                          <img src="images/missing.png" alt="uploaded icon" className="w-4 h-4" />
+                         <h3 className="text-xs text-red-600 font-semibold">Missing</h3>
+                        </div>
+
+                      </div>
+                      <p className="text-sm font-medium text-gray-800">No file for Medical Cert</p>
+                      <div className="flex space-x-4 text-gray-600 ">
+                        <button className="text-blue-600" title="view">
+                        <img src="images/eye_icon.png" alt="eye icon" className="w-6 h-6"/>
+                       </button>
+                      <button className="hover:text-green-600" title="Download">
+                      <img src="images/download.png" alt="download icon" className="w-6 h-6"/>
+
+                      </button>
+                     <button className="hover:text-red-500" title="Delete">
+                     <img src="images/trash.png" alt="trash icon" className="w-6 h-6"/>
+
+                     </button>
+                      </div>
+                    </div>
+                    <div className="bg-white border rounded-lg p-4 shadow-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <h2 className=" text-gray-600 font-semibold">National ID</h2>
+                        <div className="flex items-center space-x-1">
+                          <img src="images/uploaded.png" alt="uploaded icon" className="w-4 h-4" />
+                         <h3 className="text-xs text-gray-600 font-semibold">Uploaded</h3>
+                        </div>
+
+                      </div>
+                      <p className="text-sm font-medium text-gray-800">Sarah_Johnson_Id.pdf</p>
+                      <p className="text-xs text-gray-500 mb-3 mt-2">Uploaded on 2023-08-13</p>
+                      <div className="flex space-x-4 text-gray-600 ">
+                        <button className="text-blue-600" title="view">
+                        <img src="images/eye_icon.png" alt="eye icon" className="w-6 h-6"/>
+                       </button>
+                      <button className="hover:text-green-600" title="Download">
+                      <img src="images/download.png" alt="download icon" className="w-6 h-6"/>
+
+                      </button>
+                     <button className="hover:text-red-500" title="Delete">
+                     <img src="images/trash.png" alt="trash icon" className="w-6 h-6"/>
+
+                     </button>
+                      </div>
+                    </div>
+                  </div>
+ 
+                </div>
+              )}
+
+             <div className="w-full mt-4 flex justify-end">
+                <button
+                className="flex items-center px-4 py-2 text-white rounded-md hover:bg-gray-200"
+                 style={{ backgroundColor: '#17ae9e' }}
+                  >
+             <img src="images/add_document.png" alt="Add icon" className="w-4 h-4 mr-2" />
+             Add Document
+            </button>
+            </div>
+
+
+              {/* Back Button */}
+              <div className="mt-8 flex justify-end ">
+                <button
+                  onClick={() => setActiveTab("employees")}
+                  className=" px-4 py-2 mb-3 text-white rounded-md hover:bg-gray-200" style={{backgroundColor:'#17ae9e'}}
+                >
+                  ← Back to Employees
+                </button>
+              </div>
+            </>
+          );
+        })()}
+      </div>
+    </div>
+  </div>
+)}
+
+
+          
+  
 
       <NewEmployeeModal
         isOpen={showNewEmployeeModal}
         onClose={() => setShowNewEmployeeModal(false)}
       />
+    </div>
+    </div>
     </>
   );
 }
