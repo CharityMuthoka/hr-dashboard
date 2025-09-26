@@ -765,11 +765,8 @@ const itemsPerPage = 4;
                       </div>
                     </div>
                   </div>
- 
-                </div>
-              )}
 
-             <div className="w-full mt-4 flex justify-end">
+                  <div className="w-full mt-4 flex justify-end">
                 <button
                 className="flex items-center px-4 py-2 text-white rounded-md hover:bg-gray-200"
                  style={{ backgroundColor: '#17ae9e' }}
@@ -778,6 +775,11 @@ const itemsPerPage = 4;
              Add Document
             </button>
             </div>
+ 
+                </div>
+              )}
+
+            
 
 
               {/* Back Button */}
