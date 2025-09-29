@@ -476,55 +476,55 @@ const itemsPerPage = 4;
                 </button>
               </div>
 
-              {/* Content */}
-              {profileTab === "personal" && (
+    {/* Content */}
+      {profileTab === "personal" && (
+        <div>
+          <div className="grid grid-cols-2 gap-6 text-sm">
+            <div>
+              <p className="text-gray-500">Full Name</p>
+              <p className="font-medium border  bg-gray-100 p-2">Sarah Johnson</p>
+            </div>
+            <div>
+              <p className="text-gray-500">Gender</p>
+                <p className="font-medium border bg-gray-100 p-2">Female</p>
+            </div>
+            <div>
+              <p className="text-gray-500">Employee ID</p>
+              <p className="font-medium border bg-gray-100 p-2">Sarah Johnson</p>
+            </div>
+            <div>
+              <p className="text-gray-500">Work ID</p>
+               <p className="font-medium border bg-gray-100 p-2">Female</p>
+            </div>
+            <div>
+              <p className="text-gray-500">Date of Birth</p>
+                <p className="font-medium border bg-gray-100 p-2">23/01/1990</p>
+            </div>
+              <div>
+                <p className="text-gray-500">Bank Name</p>
+                <p className="font-medium border bg-gray-100 p-2">Grey Bank</p>
+                </div>
                 <div>
-                  <div className="grid grid-cols-2 gap-6 text-sm">
-                    <div>
-                      <p className="text-gray-500">Full Name</p>
-                      <p className="font-medium border  bg-gray-100 p-2">Sarah Johnson</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500">Gender</p>
-                      <p className="font-medium border bg-gray-100 p-2">Female</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500">Employee ID</p>
-                      <p className="font-medium border bg-gray-100 p-2">Sarah Johnson</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500">Work ID</p>
-                      <p className="font-medium border bg-gray-100 p-2">Female</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500">Date of Birth</p>
-                      <p className="font-medium border bg-gray-100 p-2">23/01/1990</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500">Bank Name</p>
-                      <p className="font-medium border bg-gray-100 p-2">Grey Bank</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500">Bank Account Number</p>
-                      <p className="font-medium border bg-gray-100 p-2">23456799</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500">Routing Number</p>
-                      <p className="font-medium border bg-gray-100 p-2">2378893B</p>
-                    </div>
-                  </div>
+                 <p className="text-gray-500">Bank Account Number</p>
+                 <p className="font-medium border bg-gray-100 p-2">23456799</p>
+              </div>
+                <div>
+                  <p className="text-gray-500">Routing Number</p>
+                  <p className="font-medium border bg-gray-100 p-2">2378893B</p>
+              </div>
+              </div>
 
-                  {/* Emergency Info */}
-                  <div className="mt-8">
-                    <h3 className="font-semibold text-gray-800 mb-4">
-                      Emergency Information
-                    </h3>
-                    {/* divider */}
-                    <div className="pt-2 border-t border-neurtal-200">
-                      </div>
+          {/* Emergency Info */}
+            <div className="mt-8">
+              <h3 className="font-semibold text-gray-800 mb-4">
+                Emergency Information
+               </h3>
+          {/* divider */}
+              <div className="pt-2 border-t border-neurtal-200">
+                </div>
 
-                    <div className="grid grid-cols-2 gap-6 text-sm">
-                      <div>
+          <div className="grid grid-cols-2 gap-6 text-sm">
+              <div>
                         <p className="text-gray-500">Full Name</p>
                         <p className="font-medium border bg-gray-100 p-2">Mary Cynthia</p>
                       </div>
