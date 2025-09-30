@@ -1,5 +1,5 @@
 import React, {useState,useRef, useEffect} from 'react';
-
+import StartOnboardingModal from './StartOnbordingModal';
 
 export default function Staffcycle({ activePage, setActivePage }) {
 
@@ -8,6 +8,7 @@ export default function Staffcycle({ activePage, setActivePage }) {
 
   const [showNewEmployeeModal, setShowNewEmployeeModal] = useState(false);
   const [activeTab, setActiveTab] = useState('onboarding');
+  const [showStartOnboardingModal, setShowStartOnboardingModal] =useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
@@ -170,7 +171,7 @@ return (
   </button>
 
   <button
-  onClick={() => alert("Onboarding process initiated")}
+  onClick={() => setShowStartOnboardingModal(true)}
   className="bg-white px-4 py-2 rounded-md text-sm flex items-center gap-2"
   style={{
     border: '1px solid #17ae9e',
@@ -187,6 +188,11 @@ return (
 
 </div>
 </div>
+
+<StartOnboardingModal
+  isOpen={showStartOnboardingModal}
+  onClose={() => setShowStartOnboardingModal(false)}
+/>
         
 {/* Stats Cards */}
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
@@ -468,8 +474,7 @@ return (
     </table>
       </div>
 
-        <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
-  
+    <div className="flex justify-between items-center mt-4 text-sm text-gray-500">
   <p>
   Showing {(currentPage - 1) * itemsPerPage + 1} to {employees.length} entries
 </p>
