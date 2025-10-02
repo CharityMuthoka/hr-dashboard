@@ -179,7 +179,7 @@ export default function Payroll({ activePage, setActivePage }) {
           >
             <img
               src="/images/new_download.png"
-              alt="add employees"
+              alt="download report"
               className="w-4 h-4"
             />
             Export Report

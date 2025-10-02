@@ -1,5 +1,6 @@
 import React, {useState,useRef, useEffect} from 'react';
 import StartOnboardingModal from './StartOnbordingModal';
+import EmployeeOnboardingModal from './EmployeeOnboardingModal';
 
 export default function Staffcycle({ activePage, setActivePage }) {
 
@@ -9,6 +10,7 @@ export default function Staffcycle({ activePage, setActivePage }) {
   const [showNewEmployeeModal, setShowNewEmployeeModal] = useState(false);
   const [activeTab, setActiveTab] = useState('onboarding');
   const [showStartOnboardingModal, setShowStartOnboardingModal] =useState(false);
+  const [showEmployeeOnboardingModal, setShowEmployeeOnboardingModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
@@ -163,7 +165,7 @@ return (
 
   <div className="flex flex-col sm:flex-row gap-3 mt-4 lg:mt-0">
   <button
-    onClick={() => setShowNewEmployeeModal(true)}
+    onClick={() => setShowEmployeeOnboardingModal(true)}
     className="bg-teal-500 text-white px-4 py-2 rounded-md text-sm hover:bg-teal-600 flex items-center gap-2"
   >
     <img src="/images/add_employees.png" alt="Add New Hire" className="w-4 h-4" />
@@ -530,6 +532,11 @@ return (
 </div>
 </>
  )}
+ {/* Employee Onboarding Modal */}
+<EmployeeOnboardingModal
+  isOpen={showEmployeeOnboardingModal}
+  onClose={() => setShowEmployeeOnboardingModal(false)}
+/>
 
  {activeTab === 'offboarding' && (
   <>
@@ -537,6 +544,8 @@ return (
   </>
  )}
  </div>
+
+ 
 );
 }
         

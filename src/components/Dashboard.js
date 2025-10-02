@@ -272,7 +272,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Table + Leave Requests section */}
+        {/* Table and Leave Requests section */}
         <div className="flex flex-col lg:flex-row gap-4 mt-6 items-start">
 
           {/* Employee Table */}
