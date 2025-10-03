@@ -449,20 +449,18 @@ export default function Dashboard() {
                 </p>
                 <div className="flex gap-2">
                 <button className="flex-1 flex items-center justify-center gap-1 text-white text-xs px-3 py-1 rounded hover:opacity-90" style={{ backgroundColor: '#4fc560' }}>
-  <img src="/images/approve.png" alt="Approve" className="w-4 h-4" />
-  Approve
-</button>
+         <img src="/images/approve.png" alt="Approve" className="w-4 h-4" />
+           Approve
+         </button>
 
-
-                  <button className="flex-1 flex items-center gap-1 border border-red-400 text-red-500 text-xs px-3 py-1 rounded hover:bg-red-50">
-                    <img src="/images/reject.png" alt="reject" className="w-4 h-4" />
-                     Reject
-                  </button>
-                </div>
+          <button className="flex-1 flex items-center gap-1 border border-red-400 text-red-500 text-xs px-3 py-1 rounded hover:bg-red-50">
+              <img src="/images/reject.png" alt="reject" className="w-4 h-4" />
+                 Reject
+            </button>
+              </div>
               </div>
             ))}
-
-            
+ 
           </div>
         </div>
 
